@@ -4,36 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Amit Joshi — Data Integration Manager · Analytics Architect</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg: #0D1117; --bg-card: #161B22; --bg-card-2: #1C2128; --bg-card-3: #21262D;
     --border: #30363D; --border-subtle: #21262D;
     --text-primary: #E6EDF3; --text-secondary: #8B949E; --text-muted: #484F58;
-    --accent: #C9A84C; --accent-light: #E3C97A; --accent-dark: #8B6914;
-    --accent-bg: rgba(201,168,76,0.08); --accent-border: rgba(201,168,76,0.25);
-    --red: #F85149; --green: #3FB950; --blue: #58A6FF;
+    --accent: #C9A84C; --accent-bg: rgba(201,168,76,0.08); --accent-border: rgba(201,168,76,0.25);
+    --green: #3FB950; --red: #F85149;
   }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text-primary); font-family: 'Inter', sans-serif; min-height: 100vh; line-height: 1.6; }
+  body { background: var(--bg); color: var(--text-primary); font-family: 'Lora', Georgia, serif; min-height: 100vh; line-height: 1.6; }
+
   .layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; max-width: 1200px; margin: 0 auto; }
+
+  /* SIDEBAR */
   .sidebar { background: var(--bg-card); border-right: 1px solid var(--border); padding: 2.5rem 1.75rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
   .avatar-wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
   .avatar { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--accent-border); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 48px; background: var(--bg-card-3); }
   .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-  .sidebar-name { font-family: Georgia, serif; font-size: 20px; font-weight: 700; color: var(--text-primary); text-align: center; line-height: 1.2; }
-  .sidebar-role { background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 4px; padding: 5px 10px; font-size: 10px; font-weight: 600; color: var(--accent); text-align: center; letter-spacing: 0.3px; }
+  .sidebar-name { font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--text-primary); text-align: center; line-height: 1.2; }
+  .sidebar-role { background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 4px; padding: 5px 10px; font-size: 10px; font-weight: 600; color: var(--accent); text-align: center; letter-spacing: 0.3px; font-family: 'Inter', sans-serif; }
   .sidebar-divider { border: none; border-top: 1px solid var(--border); }
   .contact-list { display: flex; flex-direction: column; gap: 10px; }
-  .contact-item { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-secondary); }
+  .contact-item { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-secondary); font-family: 'Inter', sans-serif; }
   .contact-icon { width: 28px; height: 28px; background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; }
   .contact-item a { color: var(--accent); text-decoration: none; font-size: 12px; }
   .contact-item a:hover { text-decoration: underline; }
   .social-links { display: flex; gap: 8px; justify-content: center; }
-  .social-link { width: 34px; height: 34px; background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 12px; font-weight: 700; color: var(--text-secondary); transition: all 0.15s; }
+  .social-link { width: 34px; height: 34px; background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 12px; font-weight: 700; color: var(--text-secondary); font-family: 'Inter', sans-serif; transition: all 0.15s; }
   .social-link:hover { border-color: var(--accent-border); color: var(--accent); }
-  .visa-badge { background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--text-muted); text-align: center; }
+  .visa-badge { background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--text-muted); text-align: center; font-family: 'Inter', sans-serif; }
+
+  /* MAIN */
   .main { overflow-y: auto; }
   .tabs-nav { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; padding: 0 2rem; }
   .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 14px 16px; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: all 0.15s; font-family: 'Inter', sans-serif; }
@@ -41,73 +45,105 @@
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
   .tab-content { display: none; padding: 2rem; }
   .tab-content.active { display: block; }
-  .section-eyebrow { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
-  .section-heading { font-family: Georgia, serif; font-size: 26px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+
+  /* TYPOGRAPHY SYSTEM
+     Lora — headings, body paragraphs, intro text (open reading areas)
+     Georgia — card text, callout boxes, client blocks, italic highlights (dense areas)
+     Inter — nav, labels, tags, meta information */
+
+  .section-eyebrow { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Inter', sans-serif; }
+  .section-heading { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.25; }
   .section-heading em { color: var(--accent); font-style: italic; }
-  .intro-text { font-family: Georgia, serif; font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; max-width: 700px; }
+
+  /* Lora for open body text */
+  .intro-text { font-family: 'Lora', serif; font-size: 14px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 12px; max-width: 700px; }
+
+  /* Georgia for the highlighted quote — tight, controlled */
   .intro-highlight { font-family: Georgia, serif; font-size: 14px; font-weight: 700; font-style: italic; color: var(--text-primary); border-left: 3px solid var(--accent); padding-left: 14px; margin: 20px 0; line-height: 1.7; max-width: 700px; }
-  .doing-heading { font-family: Georgia, serif; font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 2rem 0 1rem; }
+
+  .doing-heading { font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 2rem 0 1rem; }
   .doing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem; }
   .doing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; transition: border-color 0.15s; }
   .doing-card:hover { border-color: var(--accent-border); }
   .doing-card-icon { font-size: 22px; margin-bottom: 10px; }
-  .doing-card-title { font-family: Georgia, serif; font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; line-height: 1.3; }
-  .doing-card-text { font-size: 12px; color: var(--text-secondary); line-height: 1.6; font-family: Georgia, serif; font-style: italic; }
-  .network-heading { font-family: Georgia, serif; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
+  /* Lora for card titles, Georgia for card body */
+  .doing-card-title { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; line-height: 1.3; }
+  .doing-card-text { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.65; }
+
+  .network-heading { font-family: 'Lora', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
   .network-logos { display: flex; gap: 12px; flex-wrap: wrap; }
-  .network-logo { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 20px; font-size: 13px; font-weight: 700; }
+  .network-logo { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 20px; font-size: 13px; font-weight: 700; font-family: 'Inter', sans-serif; }
   .network-logo.bcg { color: #4CAF50; border-color: rgba(76,175,80,0.3); }
   .network-logo.hcl { color: #2196F3; border-color: rgba(33,150,243,0.3); }
+
+  /* EXPERTISE */
   .expertise-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 14px; }
-  .expertise-block-title { font-family: Georgia, serif; font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .expertise-block-title { font-family: 'Lora', serif; font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .expertise-block-title span { font-size: 10px; font-weight: 600; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; padding: 2px 7px; letter-spacing: 0.5px; font-family: 'Inter', sans-serif; }
+  /* Georgia for expertise body — dense descriptive text */
   .expertise-block-text { font-family: Georgia, serif; font-size: 13px; font-style: italic; color: var(--text-secondary); line-height: 1.7; }
   .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .tool-tag { background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 4px; padding: 3px 10px; font-size: 11px; font-weight: 500; color: var(--text-secondary); font-family: 'Inter', sans-serif; }
+
+  /* EXPERIENCE */
   .exp-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-bottom: 14px; }
   .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; gap: 12px; }
-  .exp-title { font-family: Georgia, serif; font-size: 16px; font-weight: 700; color: var(--text-primary); }
+  /* Lora for job titles */
+  .exp-title { font-family: 'Lora', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); }
   .exp-period { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; padding: 3px 8px; white-space: nowrap; flex-shrink: 0; font-family: 'Inter', sans-serif; }
   .exp-company { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; font-family: 'Inter', sans-serif; }
   .exp-products { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; font-family: Georgia, serif; }
   .exp-achievements { display: flex; flex-direction: column; gap: 8px; }
+  /* Georgia for achievement bullets — tight list */
   .exp-achievement { display: flex; gap: 10px; font-family: Georgia, serif; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
   .exp-achievement::before { content: "—"; color: var(--accent); flex-shrink: 0; }
   .client-block { background: var(--bg-card-2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 12px 14px; margin-bottom: 10px; }
   .client-name { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; font-family: 'Inter', sans-serif; }
-  .client-text { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
+  /* Georgia for client description — dense box text */
+  .client-text { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.65; }
+
+  /* PROJECTS */
   .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-bottom: 14px; transition: border-color 0.15s; }
   .project-card:hover { border-color: var(--accent-border); }
   .project-card.coming-soon { opacity: 0.55; border-style: dashed; }
   .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-  .project-title { font-family: Georgia, serif; font-size: 18px; font-weight: 700; color: var(--text-primary); }
+  /* Lora for project titles */
+  .project-title { font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: var(--text-primary); }
   .project-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 3px; font-family: 'Inter', sans-serif; }
   .project-badge.live { background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.3); color: var(--green); }
   .project-badge.soon { background: var(--bg-card-3); border: 1px solid var(--border); color: var(--text-muted); }
   .project-subtitle { font-size: 12px; color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 500; margin-bottom: 10px; }
+  /* Georgia for project description — dense card text */
   .project-text { font-family: Georgia, serif; font-size: 13px; font-style: italic; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
   .project-stats { display: flex; gap: 20px; margin-bottom: 14px; flex-wrap: wrap; }
-  .project-stat-v { font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: var(--accent); }
+  /* Lora for big stat numbers */
+  .project-stat-v { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--accent); }
   .project-stat-l { font-size: 10px; color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 500; margin-top: 2px; }
   .project-link { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; font-family: 'Inter', sans-serif; transition: all 0.15s; }
   .project-link:hover { background: rgba(201,168,76,0.15); }
+
+  /* CERTIFICATIONS */
   .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
   .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
   .cert-icon { width: 38px; height: 38px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .cert-icon.bcg-ai { background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.2); }
   .cert-icon.scrum { background: rgba(88,166,255,0.1); border: 1px solid rgba(88,166,255,0.2); }
   .cert-icon.adobe { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.2); }
+  /* Georgia for cert titles — tight card */
   .cert-title { font-family: Georgia, serif; font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; line-height: 1.3; }
   .cert-issuer { font-size: 11px; color: var(--text-muted); font-family: 'Inter', sans-serif; }
   .cert-level { font-size: 10px; font-weight: 600; color: var(--green); font-family: 'Inter', sans-serif; margin-top: 3px; }
+
+  /* CONTACT */
   .contact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 16px; }
   .contact-card-icon { width: 44px; height: 44px; background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
   .contact-card-label { font-size: 11px; font-weight: 600; color: var(--text-muted); font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
-  .contact-card-value { font-family: Georgia, serif; font-size: 14px; color: var(--text-primary); }
+  .contact-card-value { font-family: 'Lora', serif; font-size: 14px; color: var(--text-primary); }
   .contact-card-value a { color: var(--accent); text-decoration: none; }
   .contact-card-value a:hover { text-decoration: underline; }
   .download-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); border: none; border-radius: 8px; padding: 12px 24px; font-size: 13px; font-weight: 700; color: #000; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 10px; text-decoration: none; transition: opacity 0.15s; }
   .download-btn:hover { opacity: 0.85; }
+
   @media (max-width: 768px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { position: static; height: auto; }
@@ -157,7 +193,7 @@
     <div id="tab-about" class="tab-content active">
       <div class="section-eyebrow">About Me</div>
       <h1 class="section-heading">Product Owner. <em>Analytics Architect. Data Storyteller.</em></h1>
-      <p class="intro-text">Senior Product Owner with 13 years of experience leading digital analytics, data product strategy, and cross-functional delivery across knowledge platforms, e-commerce, intranets, and GenAI-powered products. I am the person teams come to before they build — advising on what to measure, how to instrument it, and what the data architecture should look like from day one.</p>
+      <p class="intro-text">Product Owner with 13 years of experience leading digital analytics, data product strategy, and cross-functional delivery across knowledge platforms, e-commerce, intranets, and GenAI-powered products. I am the person teams come to before they build — advising on what to measure, how to instrument it, and what the data architecture should look like from day one.</p>
       <p class="intro-text">At BCG I own analytics and product capability across 20+ global platforms — spanning product roadmapping, data governance, vendor negotiations, campaign analytics, and team upskilling across 30+ cohorts. Earlier at HCL I delivered analytics ecosystems across three industries — sports, cybersecurity, and education — building tracking frameworks, automated QA pipelines, and stakeholder dashboards for global clients.</p>
       <p class="intro-highlight">From instrumentation design to governance frameworks to executive reporting — I own the full analytics lifecycle, not just the output.</p>
       <div class="doing-heading">What I'm Doing</div>
@@ -298,4 +334,66 @@
       <div class="project-card coming-soon">
         <div class="project-header">
           <div class="project-title">Analytics Architecture Frameworks</div>
-          <div class="project-badge
+          <div class="project-badge soon">Coming Soon</div>
+        </div>
+        <div class="project-subtitle">What should you measure — and how — before you build?</div>
+        <p class="project-text">Three interactive frameworks covering analytics architecture for different product types — e-commerce platforms, GenAI products, and knowledge platforms. Built from 13 years of instrumentation experience across three industries.</p>
+      </div>
+      <div class="project-card coming-soon">
+        <div class="project-header">
+          <div class="project-title">Next Data Story</div>
+          <div class="project-badge soon">Coming Soon</div>
+        </div>
+        <div class="project-subtitle">Stay tuned.</div>
+        <p class="project-text">Another data-driven narrative in progress. Follow on LinkedIn for the announcement.</p>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <div id="tab-certifications" class="tab-content">
+      <div class="section-eyebrow">Credentials</div>
+      <h2 class="section-heading">Formally verified. <em>Practically applied.</em></h2>
+      <div class="doing-heading" style="margin-top:0;">BCG AI Fluency Ladder</div>
+      <div class="cert-grid">
+        <div class="cert-card"><div class="cert-icon bcg-ai">🤖</div><div><div class="cert-title">AI Fluency Ladder: AI Multiplier</div><div class="cert-issuer">BCG · via Credly</div><div class="cert-level">L4 — Highest Level · Jul 2026</div></div></div>
+        <div class="cert-card"><div class="cert-icon bcg-ai">⚡</div><div><div class="cert-title">AI Fluency Ladder: AI Automator</div><div class="cert-issuer">BCG · via Credly</div><div class="cert-level">L3 · Jun 2026</div></div></div>
+        <div class="cert-card"><div class="cert-icon bcg-ai">🛠️</div><div><div class="cert-title">AI Fluency Ladder: AI Practitioner</div><div class="cert-issuer">BCG · via Credly</div><div class="cert-level">L2 · Jun 2026</div></div></div>
+        <div class="cert-card"><div class="cert-icon bcg-ai">🔍</div><div><div class="cert-title">AI Fluency Ladder: AI Explorer</div><div class="cert-issuer">BCG · via Credly</div><div class="cert-level">L1 · Jun 2026</div></div></div>
+      </div>
+      <div class="doing-heading">Agile & Product</div>
+      <div class="cert-grid">
+        <div class="cert-card"><div class="cert-icon scrum">📋</div><div><div class="cert-title">PSPO-1 · Professional Scrum Product Owner</div><div class="cert-issuer">Scrum.org</div></div></div>
+        <div class="cert-card"><div class="cert-icon scrum">🔄</div><div><div class="cert-title">PSM-1 · Professional Scrum Master</div><div class="cert-issuer">Scrum.org</div></div></div>
+        <div class="cert-card"><div class="cert-icon scrum">✅</div><div><div class="cert-title">CSPO · Certified Scrum Product Owner</div><div class="cert-issuer">Scrum Alliance</div></div></div>
+        <div class="cert-card"><div class="cert-icon adobe">📊</div><div><div class="cert-title">Adobe SiteCatalyst Processing Rules</div><div class="cert-issuer">Adobe · Verified Test</div></div></div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="tab-contact" class="tab-content">
+      <div class="section-eyebrow">Get In Touch</div>
+      <h2 class="section-heading">Open to conversations <em>worth having.</em></h2>
+      <div class="contact-card"><div class="contact-card-icon">📧</div><div><div class="contact-card-label">Email</div><div class="contact-card-value"><a href="mailto:joshiamit723@gmail.com">joshiamit723@gmail.com</a></div></div></div>
+      <div class="contact-card"><div class="contact-card-icon">💼</div><div><div class="contact-card-label">LinkedIn</div><div class="contact-card-value"><a href="https://linkedin.com/in/amit-joshi-045354b2" target="_blank">linkedin.com/in/amit-joshi-045354b2</a></div></div></div>
+      <div class="contact-card"><div class="contact-card-icon">🐙</div><div><div class="contact-card-label">GitHub</div><div class="contact-card-value"><a href="https://github.com/Amit-Joshi-723" target="_blank">github.com/Amit-Joshi-723</a></div></div></div>
+      <div class="contact-card"><div class="contact-card-icon">🌐</div><div><div class="contact-card-label">Latest Project</div><div class="contact-card-value"><a href="https://fifteen-love-story.joshiamit723.workers.dev" target="_blank">fifteen-love-story.joshiamit723.workers.dev</a></div></div></div>
+      <a href="mailto:joshiamit723@gmail.com" class="download-btn">✉ Get In Touch</a>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(el) {
+      el.classList.remove('active');
+    });
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
