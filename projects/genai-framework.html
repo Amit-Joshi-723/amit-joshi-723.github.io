@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GenAI Product Analytics Framework — Amit Joshi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #FAF8F3;
+    --bg-card: #ffffff;
+    --bg-card-2: #f9f9f7;
+    --bg-card-3: #f5f5f0;
+    --bg-green: #f0faf6;
+    --border: #e5e5e0;
+    --border-subtle: #f0f0ea;
+    --text-primary: #1a1a18;
+    --text-body: #555550;
+    --text-muted: #888880;
+    --green: #0F6E56;
+    --green-light: #9FE1CB;
+    --green-pale: #E1F5EE;
+    --green-bright: #1D9E75;
+    --red: #dc2626;
+    --amber: #D97706;
+    --amber-bg: #FEF3C7;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text-primary); font-family: 'Lora', Georgia, serif; min-height: 100vh; line-height: 1.6; }
+
+  /* NAV */
+  .top-nav { background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 2rem; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .top-nav-left { display: flex; align-items: center; gap: 12px; }
+  .back-link { font-size: 12px; font-weight: 500; color: var(--green); text-decoration: none; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 4px; }
+  .back-link:hover { text-decoration: underline; }
+  .nav-title { font-size: 13px; font-weight: 600; color: var(--text-muted); font-family: 'Inter', sans-serif; }
+  .nav-badge { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 99px; background: var(--bg-green); border: 1px solid var(--green-light); color: var(--green); font-family: 'Inter', sans-serif; }
+
+  /* LAYOUT */
+  .main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* HEADER */
+  .header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); padding-bottom: 2rem; }
+  .header-eyebrow { font-size: 11px; font-weight: 600; color: var(--green); font-family: 'Inter', sans-serif; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+  .header-title { font-family: 'Lora', serif; font-size: 36px; font-weight: 700; color: var(--text-primary); line-height: 1.15; margin-bottom: 8px; }
+  .header-title em { color: var(--green); font-style: italic; }
+  .header-sub { font-family: 'Lora', serif; font-size: 16px; color: var(--text-body); line-height: 1.7; max-width: 680px; margin-bottom: 16px; }
+  .header-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .header-meta-item { font-size: 11px; font-weight: 500; color: var(--text-muted); font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 5px; }
+  .header-meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); }
+
+  /* HOOK BOX */
+  .hook { background: var(--green); border-radius: 10px; padding: 24px; margin-bottom: 2.5rem; }
+  .hook-title { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; color: var(--green-light); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 12px; }
+  .hook-text { font-family: 'Lora', serif; font-size: 15px; color: #fff; line-height: 1.75; margin-bottom: 14px; }
+  .hook-points { display: flex; flex-direction: column; gap: 10px; }
+  .hook-point { display: flex; gap: 12px; align-items: flex-start; }
+  .hook-point-num { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; color: var(--green-light); flex-shrink: 0; margin-top: 3px; }
+  .hook-point-text { font-family: Georgia, serif; font-size: 13px; font-style: italic; color: var(--green-pale); line-height: 1.65; }
+
+  /* TABS */
+  .tabs-nav { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; overflow-x: auto; background: var(--bg); position: sticky; top: 53px; z-index: 40; }
+  .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 12px 16px; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: all 0.15s; font-family: 'Inter', sans-serif; }
+  .tab-btn:hover { color: var(--green); }
+  .tab-btn.active { color: var(--green); border-bottom-color: var(--green); font-weight: 600; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* PROSE */
+  .prose { font-family: 'Lora', serif; font-size: 15px; color: var(--text-body); line-height: 1.8; margin-bottom: 16px; max-width: 720px; }
+  .prose strong { color: var(--text-primary); font-weight: 600; }
+
+  /* SECTION HEADING */
+  .section-h { font-family: 'Lora', serif; font-size: 20px; font-weight: 700; color: var(--text-primary); margin: 2rem 0 1rem; line-height: 1.3; }
+  .section-h em { color: var(--green); font-style: italic; }
+  .section-label { font-size: 11px; font-weight: 600; color: var(--green); font-family: 'Inter', sans-serif; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* KPI CARDS */
+  .kpi-group { margin-bottom: 2rem; }
+  .kpi-group-title { font-size: 12px; font-weight: 600; color: var(--text-muted); font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .kpi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 10px; }
+  .kpi-card:hover { border-color: var(--green-light); }
+  .kpi-name { font-family: 'Lora', serif; font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+  .kpi-abbr { font-size: 11px; font-weight: 600; color: var(--green); font-family: 'Inter', sans-serif; margin-left: 8px; }
+  .kpi-def { font-family: Georgia, serif; font-size: 13px; color: var(--text-body); line-height: 1.7; margin-bottom: 10px; font-style: italic; }
+  .kpi-signals { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-muted); margin-bottom: 10px; }
+  .kpi-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .kpi-good { font-size: 11px; font-weight: 500; color: var(--green); background: var(--bg-green); border: 1px solid var(--green-light); padding: 3px 10px; border-radius: 99px; font-family: 'Inter', sans-serif; }
+  .kpi-bad { font-size: 11px; font-weight: 500; color: var(--red); background: #fef2f2; border: 1px solid #fca5a5; padding: 3px 10px; border-radius: 99px; font-family: 'Inter', sans-serif; }
+
+  /* ARCHITECTURE */
+  .arch-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 1.5rem 0; }
+  .arch-box { border-radius: 8px; padding: 16px; }
+  .arch-box.c1 { background: var(--bg-green); border: 1px solid var(--green-light); }
+  .arch-box.c2 { background: #f0f4ff; border: 1px solid #bfdbfe; }
+  .arch-box.c3 { background: var(--amber-bg); border: 1px solid #fcd34d; }
+  .arch-box.c4 { background: #f0fdf4; border: 1px solid #86efac; }
+  .arch-title { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; }
+  .c1 .arch-title { color: var(--green); }
+  .c2 .arch-title { color: #1d4ed8; }
+  .c3 .arch-title { color: var(--amber); }
+  .c4 .arch-title { color: #16a34a; }
+  .arch-item { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-body); margin-bottom: 5px; display: flex; gap: 6px; line-height: 1.5; }
+  .arch-item::before { content: "—"; color: var(--text-muted); flex-shrink: 0; }
+  .arch-note { font-family: Georgia, serif; font-size: 13px; font-style: italic; color: var(--text-body); line-height: 1.7; margin-top: 1rem; padding: 14px; background: var(--bg-card); border-left: 3px solid var(--green); border-radius: 0 6px 6px 0; }
+
+  /* MISTAKES */
+  .mistake { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 12px; }
+  .mistake-header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 10px; }
+  .mistake-num { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--border); flex-shrink: 0; line-height: 1; margin-top: 2px; }
+  .mistake-title { font-family: 'Lora', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); line-height: 1.3; }
+  .mistake-text { font-family: Georgia, serif; font-size: 13px; color: var(--text-body); line-height: 1.75; font-style: italic; margin-bottom: 10px; }
+  .mistake-fix { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: var(--green); background: var(--bg-green); border: 1px solid var(--green-light); border-radius: 6px; padding: 8px 12px; line-height: 1.5; }
+
+  /* CHECKLIST */
+  .check-phase { margin-bottom: 1.5rem; }
+  .check-phase-title { font-family: 'Lora', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .check-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--border-subtle); }
+  .check-item:last-child { border-bottom: none; }
+  .check-box { width: 18px; height: 18px; border: 1.5px solid var(--border); border-radius: 4px; flex-shrink: 0; margin-top: 1px; background: var(--bg-card); }
+  .check-label { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+  .check-desc { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-body); line-height: 1.6; }
+
+  /* FOOTER */
+  .page-footer { border-top: 1px solid var(--border); padding: 1.5rem 0; margin-top: 3rem; font-size: 11px; color: var(--text-muted); font-family: 'Inter', sans-serif; line-height: 1.7; }
+  .page-footer a { color: var(--green); text-decoration: none; }
+
+  @media (max-width: 640px) {
+    .arch-grid { grid-template-columns: 1fr; }
+    .header-title { font-size: 26px; }
+    .main { padding: 2rem 1.25rem 4rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="top-nav-left">
+    <a href="../index.html" class="back-link">← Portfolio</a>
+    <span class="nav-title">Analytics Frameworks</span>
+  </div>
+  <div class="nav-badge">Framework · 01 of 03</div>
+</nav>
+
+<main class="main">
+
+  <header class="header">
+    <div class="header-eyebrow">Analytics Architecture Framework · GenAI Products</div>
+    <h1 class="header-title">What to measure <em>when the product itself is AI.</em></h1>
+    <p class="header-sub">Most GenAI products are instrumented like web apps — sessions, pageviews, time on site. This framework argues that the metric that matters is not whether users stayed. It is whether the output they received was good enough to use.</p>
+    <div class="header-meta">
+      <div class="header-meta-item"><span class="header-meta-dot"></span> Built from instrumentation experience across internal AI-powered knowledge tools</div>
+      <div class="header-meta-item"><span class="header-meta-dot"></span> Amit Joshi · 2026</div>
+    </div>
+  </header>
+
+  <div class="hook">
+    <div class="hook-title">Three things this framework gets right that most frameworks miss</div>
+    <p class="hook-text">Loyal users do not shy away from feedback when something is not right. They are vocal, specific, and honest in a way that no KPI can replicate. If you collect their verbatims systematically and run an LLM over them — clustering emotions, surfacing recurring frustrations, identifying unmet needs — you get a richer picture of product health than any traffic dashboard can give you. Sessions and retention tell you what people did. Verbatims tell you how it felt. Product decisions built on feelings are more durable than product decisions built on click patterns.</p>
+    <div class="hook-points">
+      <div class="hook-point"><div class="hook-point-num">01</div><div class="hook-point-text">Measure output quality — not engagement. A user who re-prompts eight times is not engaged. They are frustrated. The tool is failing them.</div></div>
+      <div class="hook-point"><div class="hook-point-num">02</div><div class="hook-point-text">Connect survey verbatims to your zero metrics. Loyal users who fill in surveys are telling you exactly what your dashboard is hiding. Read them. Put an LLM on them. Build from them.</div></div>
+      <div class="hook-point"><div class="hook-point-num">03</div><div class="hook-point-text">Instrument before you build — not after something goes wrong. Without a pre-launch baseline you cannot measure improvement. You can only measure current state.</div></div>
+    </div>
+  </div>
+
+  <nav class="tabs-nav">
+    <button class="tab-btn active" onclick="showTab('overview', this)">Overview</button>
+    <button class="tab-btn" onclick="showTab('kpis', this)">KPIs & Metrics</button>
+    <button class="tab-btn" onclick="showTab('architecture', this)">Architecture</button>
+    <button class="tab-btn" onclick="showTab('mistakes', this)">What goes wrong</button>
+    <button class="tab-btn" onclick="showTab('checklist', this)">Checklist</button>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <div id="tab-overview" class="tab-content active">
+    <div class="section-label">The problem</div>
+    <h2 class="section-h">You are measuring the wrong thing. <em>And the dashboard looks fine.</em></h2>
+
+    <p class="prose">When a GenAI product launches, the first instinct is to pull the same metrics you would pull for any web product. Sessions are up. Daily active users are climbing. Time on site looks healthy. The product appears to be working.</p>
+
+    <p class="prose">Then six weeks in, a power user writes in a survey that the outputs keep missing context. Another says they have to rewrite almost everything the tool produces before they can use it. A third says the tool is not learning from their previous sessions. None of this shows up in the dashboard. Retention is still fine. Engagement is still high. But the product is quietly failing the people who care about it most.</p>
+
+    <p class="prose">This is the verbatim problem. Loyal users are your most honest signal. They take the time to fill in surveys not because they are happy — they do it because they want the product to be better. They are giving you the roadmap. Most teams never read it because it is not in the dashboard.</p>
+
+    <p class="prose">The second problem is how teams think about engagement in an AI context. When a user submits the same question three different ways trying to get a useful answer, every one of those attempts registers as engagement in a standard analytics setup. Sessions look rich. Depth looks strong. But the user is struggling. The product is not understanding their intent on the first pass. Engagement is masking failure.</p>
+
+    <p class="prose">The third problem is timing. Most teams add proper analytics after something visibly goes wrong — after a usage drop, after a complaint escalates, after a senior stakeholder asks a question nobody can answer. At that point there is no baseline to measure against. You know what is happening now. You have no idea whether it is better or worse than when you started.</p>
+
+    <p class="prose">This framework fixes all three. It defines what to measure, how to instrument it, how to connect your verbatims to your metrics, and what the data should be telling you at 30 and 90 days. It is designed to be set up before launch, not after the first problem appears.</p>
+
+    <div class="section-label" style="margin-top:2rem;">Who this is for</div>
+    <h2 class="section-h">Product owners who inherit the analytics problem <em>after someone else built the tool.</em></h2>
+    <p class="prose">This framework is for product owners, product managers, and analytics leads who are responsible for a GenAI-powered product and are trying to answer one or more of these questions — Is this product actually working? Are users getting value from the outputs? What are users telling us that the metrics are not? Where should the next sprint focus?</p>
+    <p class="prose">It assumes you have some analytics instrumentation in place — even basic event tracking — and that you have access to user survey data or the ability to collect it. It does not assume a data science team or a sophisticated data warehouse. The principles apply whether your tool sits inside a large enterprise platform or runs as a standalone product.</p>
+  </div>
+
+  <!-- KPIs -->
+  <div id="tab-kpis" class="tab-content">
+    <div class="section-label">What to measure</div>
+    <h2 class="section-h">Three categories. <em>One central question — did the output work?</em></h2>
+    <p class="prose">Every metric in this framework answers a version of the same question — did the AI output actually help the user do what they came to do? Some metrics answer it directly. Some answer it indirectly through behaviour signals. Some answer it through what users say rather than what they click.</p>
+
+    <div class="kpi-group">
+      <div class="kpi-group-title">Output quality metrics — the most important category</div>
+
+      <div class="kpi-card">
+        <div class="kpi-name">Output Acceptance Rate <span class="kpi-abbr">OAR</span></div>
+        <div class="kpi-def">The percentage of AI outputs a user actually uses without significant modification — measured by copy, export, save, or share events fired within 60 seconds of the output appearing on screen. This is your primary health metric. Everything else supports it.</div>
+        <div class="kpi-signals">How to capture: fire a "output_accepted" event on copy, export, save, and share. Fire "output_modified" if the user edits before exporting. Calculate OAR as accepted / (accepted + modified + ignored).</div>
+        <div class="kpi-row"><span class="kpi-good">Good: above 65%</span><span class="kpi-bad">Investigate: below 40%</span></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-name">Prompt Refinement Rate <span class="kpi-abbr">PRR</span></div>
+        <div class="kpi-def">The percentage of sessions where a user submits more than two prompts for what appears to be the same underlying task. High PRR is a frustration signal — the model is not understanding intent on the first pass. It is not an engagement win. Do not celebrate it.</div>
+        <div class="kpi-signals">How to capture: group prompts into tasks using session ID and time proximity. Flag any task group with 3+ prompts as a refinement cluster. PRR = refinement sessions / total sessions.</div>
+        <div class="kpi-row"><span class="kpi-good">Good: below 20%</span><span class="kpi-bad">Investigate: above 40%</span></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-name">Session Quality Score <span class="kpi-abbr">SQS</span></div>
+        <div class="kpi-def">A composite score per session that gives you a single health number you can trend over time. A high-quality session has an accepted output, no regenerate clicks, reasonable session depth, and no rage-click signals. A low-quality session has the opposite. Score each session out of 100 and track the weekly average.</div>
+        <div class="kpi-signals">Suggested weights: output accepted (40pts) + no regenerate (20pts) + session depth above median (25pts) + no error events (15pts). Adjust weights based on what matters most for your specific product.</div>
+        <div class="kpi-row"><span class="kpi-good">Good: above 70</span><span class="kpi-bad">Investigate: below 50</span></div>
+      </div>
+    </div>
+
+    <div class="kpi-group">
+      <div class="kpi-group-title">Verbatim & sentiment metrics — what your dashboard cannot see</div>
+
+      <div class="kpi-card">
+        <div class="kpi-name">Verbatim-to-Metric Gap <span class="kpi-abbr">VMG</span></div>
+        <div class="kpi-def">The distance between what survey verbatims say and what your zero metrics show. This is not a number you pull from a dashboard. It lives in a monthly review where someone reads every survey response and asks — does this contradict anything I am seeing in the data? If retention is stable but three power users wrote that outputs are missing context, you have a gap. The gap is your real problem.</div>
+        <div class="kpi-signals">How to track: run survey verbatims through an LLM monthly. Cluster by emotion — frustration, confusion, delight, unmet need. Cross-reference clusters against your OAR and PRR trends for the same period. Document where they align and where they diverge.</div>
+        <div class="kpi-row"><span class="kpi-good">Good: verbatims confirm metric story</span><span class="kpi-bad">Investigate: verbatims contradict metrics</span></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-name">Feature Sentiment Score <span class="kpi-abbr">FSS</span></div>
+        <div class="kpi-def">LLM-derived sentiment score per product feature, extracted from verbatim survey responses. Tells you which features users love, which ones confuse them, and which ones they have stopped mentioning — which is often the most important signal of all. A feature nobody mentions is a feature nobody is using or caring about.</div>
+        <div class="kpi-signals">How to capture: tag each verbatim with the feature it references. Run sentiment analysis. Score each feature from -100 (all negative) to +100 (all positive). Track monthly. Any feature below -20 warrants a product review.</div>
+        <div class="kpi-row"><span class="kpi-good">Good: above +30 for core features</span><span class="kpi-bad">Investigate: below -20 for any feature</span></div>
+      </div>
+    </div>
+
+    <div class="kpi-group">
+      <div class="kpi-group-title">Product health indicators — the supporting layer</div>
+
+      <div class="kpi-card">
+        <div class="kpi-name">Intent Cohort Quality Delta <span class="kpi-abbr">ICQD</span></div>
+        <div class="kpi-def">The difference in SQS between your defined user intent cohorts — power users, explorers, casual users. If your overall SQS looks healthy but your power user cohort is declining, you have a problem your aggregate metrics are hiding. The users who care most are being underserved.</div>
+        <div class="kpi-signals">How to segment: tag each session with intent cohort based on entry point, feature used, and session depth. Report SQS by cohort, not in aggregate. A 10-point gap between cohorts is worth investigating.</div>
+        <div class="kpi-row"><span class="kpi-good">Good: cohort scores within 10pts of each other</span><span class="kpi-bad">Investigate: power user cohort declining while overall is stable</span></div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-name">Anomaly Detection Coverage <span class="kpi-abbr">ADC</span></div>
+        <div class="kpi-def">The percentage of metric anomalies that were detected automatically before a human noticed them. This measures the reliability of your monitoring infrastructure, not the product itself. A team that only finds problems reactively — after a complaint, after a visible drop — is always six weeks behind the problem.</div>
+        <div class="kpi-signals">How to measure: log every metric anomaly and tag whether it was detected automatically (threshold alert fired) or reactively (human noticed first). ADC = automatic detections / total anomalies.</div>
+        <div class="kpi-row"><span class="kpi-good">Good: above 80% detected automatically</span><span class="kpi-bad">Investigate: mostly reactive discovery</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div id="tab-architecture" class="tab-content">
+    <div class="section-label">How it fits together</div>
+    <h2 class="section-h">Four layers. <em>Each one feeds the next.</em></h2>
+    <p class="prose">Skipping a layer does not save time — it means the data exists somewhere but no decision ever gets made from it. The capture layer is useless without processing. The processing layer is useless without storage. And all three are useless if the reporting layer never reaches the person who needs to act on it.</p>
+
+    <div class="arch-grid">
+      <div class="arch-box c1">
+        <div class="arch-title">01 · Capture — what to track</div>
+        <div class="arch-item">Prompt submitted — length, feature context, user cohort tag</div>
+        <div class="arch-item">Output received — length, type, time to generate</div>
+        <div class="arch-item">Copy / export / save / share events — the acceptance signals</div>
+        <div class="arch-item">Regenerate clicks — the frustration signals</div>
+        <div class="arch-item">Session depth and time — supporting context only</div>
+        <div class="arch-item">Rage clicks and error events — quality failure markers</div>
+        <div class="arch-item">Survey responses — verbatims linked to user ID and session</div>
+      </div>
+      <div class="arch-box c2">
+        <div class="arch-title">02 · Process — what to calculate</div>
+        <div class="arch-item">Calculate OAR per session from acceptance events</div>
+        <div class="arch-item">Flag high-PRR sessions — group prompts into task clusters</div>
+        <div class="arch-item">Score sessions using SQS composite formula</div>
+        <div class="arch-item">Tag each session with user intent cohort</div>
+        <div class="arch-item">Run verbatims through LLM — cluster by emotion and feature</div>
+        <div class="arch-item">Cross-reference verbatim clusters against metric trends</div>
+      </div>
+      <div class="arch-box c3">
+        <div class="arch-title">03 · Store — what to keep</div>
+        <div class="arch-item">User-level session history — full quality score timeline</div>
+        <div class="arch-item">Intent cohort membership — track cohort migration over time</div>
+        <div class="arch-item">Rolling 90-day quality trend — the improvement baseline</div>
+        <div class="arch-item">Verbatim log linked to user ID — for feature-level sentiment</div>
+        <div class="arch-item">Pre-launch baseline snapshot — the most important record</div>
+        <div class="arch-item">Anomaly log — automatic vs reactive detection record</div>
+      </div>
+      <div class="arch-box c4">
+        <div class="arch-title">04 · Report — who sees what</div>
+        <div class="arch-item">Executive view — OAR trend, SQS weekly, verbatim summary</div>
+        <div class="arch-item">Product team view — cohort quality delta, PRR by feature</div>
+        <div class="arch-item">Anomaly alert layer — threshold alerts on OAR and PRR</div>
+        <div class="arch-item">Monthly verbatim review — VMG analysis, feature sentiment</div>
+        <div class="arch-item">Sprint input — verbatim clusters mapped to backlog items</div>
+      </div>
+    </div>
+
+    <div class="arch-note">Tools that fit this architecture: Adobe Analytics or Mixpanel for capture and processing. A data warehouse or flat file store for session history. SSRS, PowerApps, or any BI tool for reporting. An LLM — via API or an internal tool — for verbatim clustering. The last piece is the one most teams never build. It is also the most valuable one.</div>
+  </div>
+
+  <!-- MISTAKES -->
+  <div id="tab-mistakes" class="tab-content">
+    <div class="section-label">Five things that go wrong</div>
+    <h2 class="section-h">The mistakes are predictable. <em>That does not make them easy to avoid.</em></h2>
+    <p class="prose">Every mistake in this list was made on a real product. None of them are obvious in the moment because the dashboard always looks plausible. The problem is that dashboards are built to show you what you already decided to measure. They do not tell you what you forgot to ask.</p>
+
+    <div class="mistake">
+      <div class="mistake-header">
+        <div class="mistake-num">01</div>
+        <div class="mistake-title">Measuring engagement when you should be measuring output quality</div>
+      </div>
+      <div class="mistake-text">Session counts, time on site, and daily active users are reasonable metrics for a content site. For a GenAI product they are actively misleading. When a user submits the same request three different ways trying to get something useful, every prompt registers as engagement. The product looks healthy. The user is quietly deciding never to come back. By the time retention drops, the cause is already three months old.</div>
+      <div class="mistake-fix">Replace session count as your headline KPI with Output Acceptance Rate. Move regenerate clicks from the engagement column to the frustration column in your reporting. Brief every stakeholder on why these two metrics tell a different story than the ones they are used to seeing.</div>
+    </div>
+
+    <div class="mistake">
+      <div class="mistake-header">
+        <div class="mistake-num">02</div>
+        <div class="mistake-title">Leaving survey verbatims in a spreadsheet nobody reads</div>
+      </div>
+      <div class="mistake-text">Loyal users who take the time to fill in a survey are your most honest signal. They are not filling it in because they are happy — they are filling it in because they want the product to be better. In a knowledge tool deployment, retention metrics were stable for three months while power users were repeatedly writing that outputs were missing document context and requiring heavy manual correction. The dashboard said healthy. The verbatims said broken. Nobody connected the two until a senior stakeholder asked a question that nobody could answer from the dashboard alone.</div>
+      <div class="mistake-fix">Run verbatims through an LLM monthly. Cluster by emotion and feature. Cross-reference clusters against your OAR and PRR trends for the same period. Present the Verbatim-to-Metric Gap in every product review — not as a footnote but as a first-class input alongside the quantitative metrics.</div>
+    </div>
+
+    <div class="mistake">
+      <div class="mistake-header">
+        <div class="mistake-num">03</div>
+        <div class="mistake-title">Instrumenting after launch because there was no time before</div>
+      </div>
+      <div class="mistake-text">There is always a reason to skip pre-launch instrumentation. The sprint is full. The tool needs to ship. Analytics can be added later. Later arrives when something goes wrong and the first question anyone asks is — is this better or worse than it used to be? Without a pre-launch baseline, that question has no answer. You know the current state but not the direction of travel.</div>
+      <div class="mistake-fix">Define your OAR target, PRR threshold, and SQS formula before the first user touches the product. Instrument during development. Capture a week-one baseline snapshot on day one of launch. This is not optional — it is the only way to measure improvement rather than just current state.</div>
+    </div>
+
+    <div class="mistake">
+      <div class="mistake-header">
+        <div class="mistake-num">04</div>
+        <div class="mistake-title">Reporting aggregate metrics when cohort metrics tell a different story</div>
+      </div>
+      <div class="mistake-text">An overall SQS of 68 looks healthy. But if your power user cohort is sitting at 52 while casual users are at 78, the product is failing the people who understand it best and rely on it most. Power users tolerate poor quality for longer before they leave — and when they leave, they take their network with them. Aggregate metrics hide this until it is too late.</div>
+      <div class="mistake-fix">Segment every quality metric by user intent cohort from day one. Report cohort metrics alongside aggregate metrics in every product review. If any cohort's quality score drops more than 10 points below the overall average, treat it as a priority incident regardless of how the headline number looks.</div>
+    </div>
+
+    <div class="mistake">
+      <div class="mistake-header">
+        <div class="mistake-num">05</div>
+        <div class="mistake-title">Only finding problems when someone complains about them</div>
+      </div>
+      <div class="mistake-text">Reactive discovery means you are always behind the problem. By the time a stakeholder notices a drop, the issue has usually been running for two to four weeks. The root cause is harder to isolate because you do not know exactly when it started. The fix takes longer because trust has already been damaged.</div>
+      <div class="mistake-fix">Set threshold alerts on OAR, PRR, and SQS from day one. If OAR drops more than 10 points week-on-week, alert automatically before anyone notices. Track your Anomaly Detection Coverage as a metric in its own right — the goal is for more than 80% of issues to be detected automatically, not reactively.</div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div id="tab-checklist" class="tab-content">
+    <div class="section-label">Before you go live</div>
+    <h2 class="section-h">The checklist that most teams skip. <em>And later wish they hadn't.</em></h2>
+    <p class="prose">This is not a technical instrumentation checklist — your engineering team handles the event firing. This is the product and analytics decisions that need to be made before a single user touches the tool. Most teams make these decisions retrospectively, when a problem has already appeared. Making them upfront takes two hours. Making them retrospectively takes two months.</p>
+
+    <div class="check-phase">
+      <div class="check-phase-title">Before build — decisions that cannot wait</div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Define your OAR target</div><div class="check-desc">Agree with stakeholders what percentage of outputs should be accepted without modification. Write it down. This becomes your launch success criterion — not session count, not DAU.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Define your PRR threshold</div><div class="check-desc">Agree at what re-prompt rate you consider the model to be failing on first-pass intent. Above this threshold, the product team is notified regardless of how other metrics look.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Map your user intent cohorts</div><div class="check-desc">Define at least three user types — power user, explorer, casual. Define what success looks like for each. This drives the segmentation architecture before a line of code is written.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Assign verbatim review ownership</div><div class="check-desc">Decide who reads the survey responses every month and how that input reaches the product team. If it is not assigned before launch, it will not happen after launch.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Design your SQS formula</div><div class="check-desc">Agree the composite scoring weights with your product team. The formula is less important than the agreement — everyone needs to accept the same definition of a good session.</div></div>
+      </div>
+    </div>
+
+    <div class="check-phase">
+      <div class="check-phase-title">At launch — the baseline moment</div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Capture your week-one baseline snapshot</div><div class="check-desc">Record OAR, PRR, and SQS for the first full week of live usage. This is the number everything gets measured against. Store it somewhere permanent — a dashboard, a document, a slide. It is the most important data point you will ever capture for this product.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Confirm acceptance events are firing correctly</div><div class="check-desc">Validate that copy, export, save, and share events are captured in QA before launch. OAR is meaningless if the acceptance signals are misfiring or missing entirely.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Set threshold alerts on OAR and PRR</div><div class="check-desc">Configure automatic alerts so that a 10-point drop in OAR or a 15-point rise in PRR triggers a notification to the product team without anyone having to pull a report.</div></div>
+      </div>
+    </div>
+
+    <div class="check-phase">
+      <div class="check-phase-title">30 days in — first honest look</div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Run your first verbatim review</div><div class="check-desc">Read every survey response collected in the first month. Run them through an LLM. Cluster by emotion and feature. Ask — does anything here contradict what the metrics are telling us?</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Review quality scores by cohort</div><div class="check-desc">Compare SQS across your intent cohorts. Identify which cohort is most underserved. Make it a named priority in the next sprint planning — not a footnote.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Validate your SQS formula weights</div><div class="check-desc">Check whether the composite score aligns with what you are hearing in verbatims. If the score says healthy but users say struggling, the weights need adjusting.</div></div>
+      </div>
+    </div>
+
+    <div class="check-phase">
+      <div class="check-phase-title">90 days in — the improvement question</div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Measure improvement against the week-one baseline</div><div class="check-desc">Compare current OAR and PRR to the snapshot you captured at launch. This is the only honest answer to "is the product getting better?" Everything else is noise.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Review anomaly detection coverage</div><div class="check-desc">What percentage of metric problems were caught automatically versus reactively? If the answer is mostly reactive, the monitoring infrastructure needs investment before the next major release.</div></div>
+      </div>
+      <div class="check-item">
+        <div class="check-box"></div>
+        <div><div class="check-label">Present the Verbatim-to-Metric Gap analysis</div><div class="check-desc">Bring a summary to the product review showing where survey feedback and metric data aligned over the quarter — and where they diverged. The divergences are your next three product bets.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div>Amit Joshi · Data Integration Manager · Analytics Architect · BCG</div>
+    <div><a href="../index.html">Portfolio</a> · <a href="https://fifteen-love-story.joshiamit723.workers.dev" target="_blank">Fifteen Love</a> · <a href="https://linkedin.com/in/amit-joshi-045354b2" target="_blank">LinkedIn</a> · <a href="https://github.com/Amit-Joshi-723" target="_blank">GitHub</a></div>
+    <div style="margin-top:6px;">Built from 13 years of cross-industry instrumentation experience · 2026</div>
+  </footer>
+
+</main>
+
+<script>
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
+</body>
+</html>
