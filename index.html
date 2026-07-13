@@ -116,6 +116,14 @@
   .contact-card-value a:hover { text-decoration: underline; }
   .download-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); border: none; border-radius: 8px; padding: 12px 24px; font-size: 13px; font-weight: 700; color: #000; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 10px; text-decoration: none; transition: opacity 0.15s; }
   .download-btn:hover { opacity: 0.85; }
+
+  .expertise-block-opener { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: #E6EDF3; margin-bottom: 10px; line-height: 1.4; }
+  .expertise-stats-row { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid #30363D; border-radius: 6px; overflow: hidden; }
+  .expertise-stat { padding: 10px 14px; flex: 1; border-right: 1px solid #30363D; }
+  .expertise-stat:last-child { border-right: none; }
+  .expertise-stat-v { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: #C9A84C; line-height: 1; }
+  .expertise-stat-l { font-size: 10px; font-weight: 500; color: #484F58; font-family: 'Inter', sans-serif; margin-top: 4px; }
+  .expertise-block-text { font-family: 'Lora', serif; font-size: 13px; color: #8B949E; line-height: 1.75; margin-bottom: 10px; }
   @media (max-width: 768px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { position: static; height: auto; }
@@ -164,7 +172,7 @@
     <div id="tab-about" class="tab-content active">
       <div class="section-eyebrow">About Me</div>
       <h1 class="section-heading">Product Owner. <em>Analytics Architect. Data Storyteller.</em></h1>
-      <p class="intro-text">Product Owner with 13+ years of experience leading digital analytics, data product strategy, and cross-functional delivery across knowledge platforms, e-commerce, intranets, and GenAI-powered products. I am the person teams come to before they build — advising on what to measure, how to instrument it, and what the data architecture should look like from day one.</p>
+      <p class="intro-text">Senior Product Owner with 13 years of experience leading digital analytics, data product strategy, and cross-functional delivery across knowledge platforms, e-commerce, intranets, and GenAI-powered products. I am the person teams come to before they build — advising on what to measure, how to instrument it, and what the data architecture should look like from day one.</p>
       <p class="intro-text">At BCG I own analytics and product capability across 20+ global platforms — spanning product roadmapping, data governance, vendor negotiations, campaign analytics, and team upskilling across 30+ cohorts. Earlier at HCL I delivered analytics ecosystems across three industries — sports, cybersecurity, and education — building tracking frameworks, automated QA pipelines, and stakeholder dashboards for global clients.</p>
       <p class="intro-highlight">From instrumentation design to governance frameworks to executive reporting — I own the full analytics lifecycle, not just the output.</p>
       <div class="doing-heading">What I'm Doing</div>
@@ -197,14 +205,20 @@
       </div>
     </div>
 
-    <!-- EXPERTISE — rewritten to balance product and analytics -->
+    <!-- EXPERTISE — stats, opener lines, Lora body text -->
     <div id="tab-expertise" class="tab-content">
       <div class="section-eyebrow">Areas of Depth</div>
       <h2 class="section-heading">Where I go <em>deep.</em></h2>
 
       <div class="expertise-block">
         <div class="expertise-block-title">Product Strategy & Analytics Advisory <span>Pre-build · BCG</span></div>
-        <div class="expertise-block-text">The work that matters most happens before anything is built. I advise product teams on what to measure, how to structure their data layer, and what their KPIs should actually be — not what is easy to track, but what answers the questions the business cares about. At BCG this means working with 15+ agile squads across knowledge platforms, GenAI tools, and intranet ecosystems — helping product owners translate usage data into roadmap decisions rather than just reporting what happened.</div>
+        <div class="expertise-block-opener">The work that matters most happens before anything is built.</div>
+        <div class="expertise-stats-row">
+          <div class="expertise-stat"><div class="expertise-stat-v">15+</div><div class="expertise-stat-l">Agile squads advised</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">20+</div><div class="expertise-stat-l">Platforms owned</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">30+</div><div class="expertise-stat-l">Teams upskilled</div></div>
+        </div>
+        <div class="expertise-block-text">I advise product teams on what to measure, how to structure their data layer, and what their KPIs should actually be — not what is easy to track, but what answers the questions the business cares about. At BCG this means working with agile squads across knowledge platforms, GenAI tools, and intranet ecosystems — helping product owners translate usage data into roadmap decisions rather than just reporting what happened.</div>
         <div class="tool-tags">
           <span class="tool-tag">OKR Definition</span><span class="tool-tag">KPI Framework Design</span><span class="tool-tag">Roadmapping</span><span class="tool-tag">Stakeholder Alignment</span><span class="tool-tag">Scrum</span><span class="tool-tag">Kanban</span>
         </div>
@@ -212,7 +226,12 @@
 
       <div class="expertise-block">
         <div class="expertise-block-title">Adobe Analytics <span>SME · BCG</span></div>
-        <div class="expertise-block-text">Enterprise-level Adobe Analytics ownership at BCG — not just implementation but strategic platform management. Contract negotiation, usage optimisation, vendor relationship, and instrumentation guidance across the knowledge and marketing ecosystem. Teams consult me before they instrument — on processing rules, report suite architecture, and what events actually need to fire. I have delivered Adobe Analytics implementations across a global education publisher and a European football club as well.</div>
+        <div class="expertise-block-opener">Teams consult me before they instrument — not after something breaks.</div>
+        <div class="expertise-stats-row">
+          <div class="expertise-stat"><div class="expertise-stat-v">100+</div><div class="expertise-stat-l">Dashboards delivered</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">40%</div><div class="expertise-stat-l">Data reliability uplift</div></div>
+        </div>
+        <div class="expertise-block-text">Enterprise-level Adobe Analytics ownership at BCG — not just implementation but strategic platform management. Contract negotiation, usage optimisation, vendor relationship, and instrumentation guidance across the knowledge and marketing ecosystem. Teams consult me before they instrument — on processing rules, report suite architecture, and what events actually need to fire. Also delivered Adobe Analytics implementations across a global education publisher and a European football club.</div>
         <div class="tool-tags">
           <span class="tool-tag">Adobe Analytics</span><span class="tool-tag">Processing Rules</span><span class="tool-tag">Report Suites</span><span class="tool-tag">Workspace</span><span class="tool-tag">Data Feeds</span><span class="tool-tag">Mobile SDK</span>
         </div>
@@ -220,7 +239,12 @@
 
       <div class="expertise-block">
         <div class="expertise-block-title">Mobile & Web Analytics <span>Manchester United · HCL</span></div>
-        <div class="expertise-block-text">Implemented end-to-end web and mobile analytics for Manchester United's official digital platforms — the website and the app. Built the full tracking framework using Adobe Analytics and Mixpanel, delivered dashboards and reports, and did something most analysts do not do — recommended product features based on what the data showed. Emoji reactions on news articles came from that analysis. Digital engagement went up 25%.</div>
+        <div class="expertise-block-opener">Analytics that led to product decisions — not just reports.</div>
+        <div class="expertise-stats-row">
+          <div class="expertise-stat"><div class="expertise-stat-v">25%</div><div class="expertise-stat-l">Digital engagement uplift</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">2</div><div class="expertise-stat-l">Analytics stacks implemented</div></div>
+        </div>
+        <div class="expertise-block-text">Implemented end-to-end web and mobile analytics for Manchester United's official digital platforms — the website and the app. Built the full tracking framework using Adobe Analytics and Mixpanel, delivered dashboards and reports, and recommended product features based on what the data showed. Emoji reactions on news articles came from that analysis.</div>
         <div class="tool-tags">
           <span class="tool-tag">Adobe Analytics Mobile</span><span class="tool-tag">Mixpanel</span><span class="tool-tag">Mobile App Tracking</span><span class="tool-tag">Product Recommendations</span>
         </div>
@@ -228,15 +252,25 @@
 
       <div class="expertise-block">
         <div class="expertise-block-title">GenAI Product Analytics <span>BCG · 2023–Present</span></div>
-        <div class="expertise-block-text">Most GenAI products are measured like web apps. They should not be. I built KPI frameworks for internal AI-powered tools that measure output quality — not engagement — and connected survey verbatims to metric anomalies to surface what dashboards cannot see. If loyal users are telling you in a survey that the outputs are missing context, and your retention metrics look fine, you have a problem your dashboard will never find on its own.</div>
+        <div class="expertise-block-opener">Most GenAI products are measured like web apps. They should not be.</div>
+        <div class="expertise-stats-row">
+          <div class="expertise-stat"><div class="expertise-stat-v">80%</div><div class="expertise-stat-l">Dashboard reliability uplift</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">L4</div><div class="expertise-stat-l">BCG AI Multiplier</div></div>
+        </div>
+        <div class="expertise-block-text">Built KPI frameworks for internal AI-powered tools that measure output quality — not engagement. Connected survey verbatims to metric anomalies to surface what dashboards cannot see. If loyal users are telling you in a survey that the outputs are missing context and your retention metrics look fine, you have a problem your dashboard will never find on its own.</div>
         <div class="tool-tags">
           <span class="tool-tag">Output Quality Metrics</span><span class="tool-tag">Verbatim Analysis</span><span class="tool-tag">Anomaly Detection</span><span class="tool-tag">GenAI KPIs</span><span class="tool-tag">Attribution Modelling</span>
         </div>
       </div>
 
       <div class="expertise-block">
-        <div class="expertise-block-title">Data Governance & Self-Service BI</div>
-        <div class="expertise-block-text">Built the infrastructure that makes analytics reliable enough for other people to use independently. A low-code analytics portal that cut ad-hoc reporting requests by 60%. Self-service dashboards used by 100+ people across functions. Data quality checks baked into every report so the number someone sees in a meeting is a number they can trust. Also delivered digital advertising analytics using Google DFP for a global education publisher — covering both content and commercial metrics from the same instrumentation layer.</div>
+        <div class="expertise-block-title">Data Governance & Self-Service BI <span>BCG · HCL</span></div>
+        <div class="expertise-block-opener">The infrastructure that makes analytics reliable enough to act on.</div>
+        <div class="expertise-stats-row">
+          <div class="expertise-stat"><div class="expertise-stat-v">60%</div><div class="expertise-stat-l">Ad-hoc reporting reduced</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">100+</div><div class="expertise-stat-l">Self-service users enabled</div></div>
+        </div>
+        <div class="expertise-block-text">Built a low-code analytics portal that cut ad-hoc reporting requests by 60%. Self-service dashboards trusted by 100+ people across functions. Data quality checks baked into every report so the number someone sees in a meeting is a number they can act on. Also delivered digital advertising analytics using Google DFP for a global education publisher — covering both content and commercial metrics from the same instrumentation layer.</div>
         <div class="tool-tags">
           <span class="tool-tag">SSRS</span><span class="tool-tag">Microsoft PowerApps</span><span class="tool-tag">LCNC BI</span><span class="tool-tag">Google DFP</span><span class="tool-tag">Webtrends</span><span class="tool-tag">Google Analytics</span><span class="tool-tag">JIRA</span><span class="tool-tag">Confluence</span>
         </div>
