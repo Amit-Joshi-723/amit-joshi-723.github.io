@@ -16,10 +16,7 @@
   }
   html { scroll-behavior: smooth; }
   body { background: var(--bg); color: var(--text-primary); font-family: 'Lora', Georgia, serif; min-height: 100vh; line-height: 1.6; }
-
   .layout { display: grid; grid-template-columns: 300px 1fr; min-height: 100vh; max-width: 1200px; margin: 0 auto; }
-
-  /* SIDEBAR */
   .sidebar { background: var(--bg-card); border-right: 1px solid var(--border); padding: 2.5rem 1.75rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
   .avatar-wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
   .avatar { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--accent-border); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 48px; background: var(--bg-card-3); }
@@ -36,8 +33,6 @@
   .social-link { width: 34px; height: 34px; background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 12px; font-weight: 700; color: var(--text-secondary); font-family: 'Inter', sans-serif; transition: all 0.15s; }
   .social-link:hover { border-color: var(--accent-border); color: var(--accent); }
   .visa-badge { background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 4px; padding: 4px 10px; font-size: 11px; color: var(--text-muted); text-align: center; font-family: 'Inter', sans-serif; }
-
-  /* MAIN */
   .main { overflow-y: auto; }
   .tabs-nav { position: sticky; top: 0; z-index: 10; background: var(--bg); border-bottom: 1px solid var(--border); display: flex; overflow-x: auto; padding: 0 2rem; }
   .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; padding: 14px 16px; font-size: 13px; font-weight: 500; color: var(--text-muted); cursor: pointer; white-space: nowrap; transition: all 0.15s; font-family: 'Inter', sans-serif; }
@@ -45,96 +40,74 @@
   .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
   .tab-content { display: none; padding: 2rem; }
   .tab-content.active { display: block; }
-
-  /* TYPOGRAPHY SYSTEM
-     Lora — headings, body paragraphs, intro text (open reading areas)
-     Georgia — card text, callout boxes, client blocks, italic highlights (dense areas)
-     Inter — nav, labels, tags, meta information */
-
   .section-eyebrow { font-size: 11px; font-weight: 600; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; font-family: 'Inter', sans-serif; }
   .section-heading { font-family: 'Lora', serif; font-size: 26px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.25; }
   .section-heading em { color: var(--accent); font-style: italic; }
-
-  /* Lora for open body text */
   .intro-text { font-family: 'Lora', serif; font-size: 14px; color: var(--text-secondary); line-height: 1.85; margin-bottom: 12px; max-width: 700px; }
-
-  /* Georgia for the highlighted quote — tight, controlled */
   .intro-highlight { font-family: Georgia, serif; font-size: 14px; font-weight: 700; font-style: italic; color: var(--text-primary); border-left: 3px solid var(--accent); padding-left: 14px; margin: 20px 0; line-height: 1.7; max-width: 700px; }
-
   .doing-heading { font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: var(--text-primary); margin: 2rem 0 1rem; }
   .doing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 2rem; }
   .doing-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; transition: border-color 0.15s; }
   .doing-card:hover { border-color: var(--accent-border); }
   .doing-card-icon { font-size: 22px; margin-bottom: 10px; }
-  /* Lora for card titles, Georgia for card body */
   .doing-card-title { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; line-height: 1.3; }
   .doing-card-text { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.65; }
-
   .network-heading { font-family: 'Lora', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
   .network-logos { display: flex; gap: 12px; flex-wrap: wrap; }
   .network-logo { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 10px 20px; font-size: 13px; font-weight: 700; font-family: 'Inter', sans-serif; }
   .network-logo.bcg { color: #4CAF50; border-color: rgba(76,175,80,0.3); }
   .network-logo.hcl { color: #2196F3; border-color: rgba(33,150,243,0.3); }
-
-  /* EXPERTISE */
   .expertise-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 14px; }
   .expertise-block-title { font-family: 'Lora', serif; font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .expertise-block-title span { font-size: 10px; font-weight: 600; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; padding: 2px 7px; letter-spacing: 0.5px; font-family: 'Inter', sans-serif; }
-  /* Georgia for expertise body — dense descriptive text */
   .expertise-block-text { font-family: Georgia, serif; font-size: 13px; font-style: italic; color: var(--text-secondary); line-height: 1.7; }
   .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .tool-tag { background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 4px; padding: 3px 10px; font-size: 11px; font-weight: 500; color: var(--text-secondary); font-family: 'Inter', sans-serif; }
-
-  /* EXPERIENCE */
   .exp-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-bottom: 14px; }
   .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px; gap: 12px; }
-  /* Lora for job titles */
   .exp-title { font-family: 'Lora', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); }
   .exp-period { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; padding: 3px 8px; white-space: nowrap; flex-shrink: 0; font-family: 'Inter', sans-serif; }
   .exp-company { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; font-family: 'Inter', sans-serif; }
   .exp-products { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; font-family: Georgia, serif; }
   .exp-achievements { display: flex; flex-direction: column; gap: 8px; }
-  /* Georgia for achievement bullets — tight list */
   .exp-achievement { display: flex; gap: 10px; font-family: Georgia, serif; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
   .exp-achievement::before { content: "—"; color: var(--accent); flex-shrink: 0; }
   .client-block { background: var(--bg-card-2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 12px 14px; margin-bottom: 10px; }
   .client-name { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; font-family: 'Inter', sans-serif; }
-  /* Georgia for client description — dense box text */
   .client-text { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.65; }
 
   /* PROJECTS */
   .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-bottom: 14px; transition: border-color 0.15s; }
   .project-card:hover { border-color: var(--accent-border); }
-  .project-card.coming-soon { opacity: 0.55; border-style: dashed; }
+  .project-card.coming-soon { opacity: 0.6; border-style: dashed; }
   .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-  /* Lora for project titles */
   .project-title { font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: var(--text-primary); }
   .project-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 3px; font-family: 'Inter', sans-serif; }
   .project-badge.live { background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.3); color: var(--green); }
+  .project-badge.framework { background: var(--accent-bg); border: 1px solid var(--accent-border); color: var(--accent); }
   .project-badge.soon { background: var(--bg-card-3); border: 1px solid var(--border); color: var(--text-muted); }
   .project-subtitle { font-size: 12px; color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 500; margin-bottom: 10px; }
-  /* Georgia for project description — dense card text */
   .project-text { font-family: Georgia, serif; font-size: 13px; font-style: italic; color: var(--text-secondary); line-height: 1.7; margin-bottom: 14px; }
   .project-stats { display: flex; gap: 20px; margin-bottom: 14px; flex-wrap: wrap; }
-  /* Lora for big stat numbers */
   .project-stat-v { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: var(--accent); }
   .project-stat-l { font-size: 10px; color: var(--text-muted); font-family: 'Inter', sans-serif; font-weight: 500; margin-top: 2px; }
-  .project-link { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; font-family: 'Inter', sans-serif; transition: all 0.15s; }
+  .project-link { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; font-family: 'Inter', sans-serif; transition: all 0.15s; margin-right: 8px; }
   .project-link:hover { background: rgba(201,168,76,0.15); }
+  .fw-points { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .fw-point { display: flex; gap: 8px; font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
+  .fw-point::before { content: "—"; color: var(--accent); flex-shrink: 0; }
+  .teaser-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .teaser-tag { font-size: 11px; padding: 3px 10px; border-radius: 99px; background: var(--bg-card-3); border: 1px solid var(--border); color: var(--text-muted); font-family: 'Inter', sans-serif; }
 
-  /* CERTIFICATIONS */
   .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
   .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
   .cert-icon { width: 38px; height: 38px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .cert-icon.bcg-ai { background: rgba(63,185,80,0.1); border: 1px solid rgba(63,185,80,0.2); }
   .cert-icon.scrum { background: rgba(88,166,255,0.1); border: 1px solid rgba(88,166,255,0.2); }
   .cert-icon.adobe { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.2); }
-  /* Georgia for cert titles — tight card */
   .cert-title { font-family: Georgia, serif; font-size: 13px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; line-height: 1.3; }
   .cert-issuer { font-size: 11px; color: var(--text-muted); font-family: 'Inter', sans-serif; }
   .cert-level { font-size: 10px; font-weight: 600; color: var(--green); font-family: 'Inter', sans-serif; margin-top: 3px; }
-
-  /* CONTACT */
   .contact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 16px; }
   .contact-card-icon { width: 44px; height: 44px; background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
   .contact-card-label { font-size: 11px; font-weight: 600; color: var(--text-muted); font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
@@ -143,7 +116,6 @@
   .contact-card-value a:hover { text-decoration: underline; }
   .download-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); border: none; border-radius: 8px; padding: 12px 24px; font-size: 13px; font-weight: 700; color: #000; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 10px; text-decoration: none; transition: opacity 0.15s; }
   .download-btn:hover { opacity: 0.85; }
-
   @media (max-width: 768px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { position: static; height: auto; }
@@ -154,7 +126,6 @@
 </head>
 <body>
 <div class="layout">
-
   <aside class="sidebar">
     <div class="avatar-wrap">
       <div class="avatar">
@@ -193,7 +164,7 @@
     <div id="tab-about" class="tab-content active">
       <div class="section-eyebrow">About Me</div>
       <h1 class="section-heading">Product Owner. <em>Analytics Architect. Data Storyteller.</em></h1>
-      <p class="intro-text">Product Owner with 13 years of experience leading digital analytics, data product strategy, and cross-functional delivery across knowledge platforms, e-commerce, intranets, and GenAI-powered products. I am the person teams come to before they build — advising on what to measure, how to instrument it, and what the data architecture should look like from day one.</p>
+      <p class="intro-text">Senior Product Owner with 13 years of experience leading digital analytics, data product strategy, and cross-functional delivery across knowledge platforms, e-commerce, intranets, and GenAI-powered products. I am the person teams come to before they build — advising on what to measure, how to instrument it, and what the data architecture should look like from day one.</p>
       <p class="intro-text">At BCG I own analytics and product capability across 20+ global platforms — spanning product roadmapping, data governance, vendor negotiations, campaign analytics, and team upskilling across 30+ cohorts. Earlier at HCL I delivered analytics ecosystems across three industries — sports, cybersecurity, and education — building tracking frameworks, automated QA pipelines, and stakeholder dashboards for global clients.</p>
       <p class="intro-highlight">From instrumentation design to governance frameworks to executive reporting — I own the full analytics lifecycle, not just the output.</p>
       <div class="doing-heading">What I'm Doing</div>
@@ -201,22 +172,22 @@
         <div class="doing-card">
           <div class="doing-card-icon">🏗️</div>
           <div class="doing-card-title">Analytics Architecture & Advisory</div>
-          <div class="doing-card-text">Advising product and marketing teams on what to measure before they build. Instrumentation design, tagging strategy, data layer architecture, and KPI frameworks across e-commerce, knowledge platforms, and GenAI products.</div>
+          <div class="doing-card-text">Teams come to me before they build — to define what to measure, how to instrument it, and what the data layer should look like before a line of code is written. The advisory is the value. The tools are just how it gets done.</div>
         </div>
         <div class="doing-card">
           <div class="doing-card-icon">🗺️</div>
           <div class="doing-card-title">Product Strategy & Delivery</div>
-          <div class="doing-card-text">Owning end-to-end product roadmaps across 20+ platforms and 15+ agile squads. Translating usage data into prioritisation decisions, OKR definition, and release planning across Scrum and Kanban setups.</div>
+          <div class="doing-card-text">End-to-end product ownership across 20+ platforms and 15+ agile squads. I translate usage data into roadmap decisions — not just reports. OKR definition, sprint planning, stakeholder alignment, release prioritisation.</div>
         </div>
         <div class="doing-card">
           <div class="doing-card-icon">🔬</div>
           <div class="doing-card-title">Data Governance & Platform Ownership</div>
-          <div class="doing-card-text">Adobe Analytics SME at BCG — contract management, vendor negotiation, usage optimisation, and self-service BI enablement for 100+ users. Embedding data quality and governance at scale across global platforms.</div>
+          <div class="doing-card-text">I own platforms, not just dashboards. Contract management, vendor negotiation, self-service enablement, data quality at scale — the infrastructure that makes analytics reliable enough to build decisions on.</div>
         </div>
         <div class="doing-card">
           <div class="doing-card-icon">✍️</div>
           <div class="doing-card-title">GenAI Products & Data Storytelling</div>
-          <div class="doing-card-text">Building AI-powered analytics tools and GenAI-specific KPI frameworks. BCG AI Fluency Ladder L4 — AI Multiplier. Also building independent data journalism — turning complex datasets into interactive narratives.</div>
+          <div class="doing-card-text">Defining what good looks like when the product itself is AI — output quality metrics, verbatim analysis, anomaly detection. Also building independent data journalism — turning complex datasets into narratives worth reading.</div>
         </div>
       </div>
       <div class="network-heading">Professional Network</div>
@@ -226,43 +197,48 @@
       </div>
     </div>
 
-    <!-- EXPERTISE -->
+    <!-- EXPERTISE — rewritten to balance product and analytics -->
     <div id="tab-expertise" class="tab-content">
       <div class="section-eyebrow">Areas of Depth</div>
       <h2 class="section-heading">Where I go <em>deep.</em></h2>
+
+      <div class="expertise-block">
+        <div class="expertise-block-title">Product Strategy & Analytics Advisory <span>Pre-build · BCG</span></div>
+        <div class="expertise-block-text">The work that matters most happens before anything is built. I advise product teams on what to measure, how to structure their data layer, and what their KPIs should actually be — not what is easy to track, but what answers the questions the business cares about. At BCG this means working with 15+ agile squads across knowledge platforms, GenAI tools, and intranet ecosystems — helping product owners translate usage data into roadmap decisions rather than just reporting what happened.</div>
+        <div class="tool-tags">
+          <span class="tool-tag">OKR Definition</span><span class="tool-tag">KPI Framework Design</span><span class="tool-tag">Roadmapping</span><span class="tool-tag">Stakeholder Alignment</span><span class="tool-tag">Scrum</span><span class="tool-tag">Kanban</span>
+        </div>
+      </div>
+
       <div class="expertise-block">
         <div class="expertise-block-title">Adobe Analytics <span>SME · BCG</span></div>
-        <div class="expertise-block-text">Enterprise-level Adobe Analytics ownership at BCG — covering contract management, vendor negotiation, usage optimisation, and strategic guidance across the knowledge and marketing ecosystem. Teams across BCG consult me on instrumentation architecture, processing rules, and what to measure before they launch. Also delivered Adobe Analytics implementations for a global education publisher and Manchester United at HCL.</div>
+        <div class="expertise-block-text">Enterprise-level Adobe Analytics ownership at BCG — not just implementation but strategic platform management. Contract negotiation, usage optimisation, vendor relationship, and instrumentation guidance across the knowledge and marketing ecosystem. Teams consult me before they instrument — on processing rules, report suite architecture, and what events actually need to fire. I have delivered Adobe Analytics implementations across a global education publisher and a European football club as well.</div>
         <div class="tool-tags">
           <span class="tool-tag">Adobe Analytics</span><span class="tool-tag">Processing Rules</span><span class="tool-tag">Report Suites</span><span class="tool-tag">Workspace</span><span class="tool-tag">Data Feeds</span><span class="tool-tag">Mobile SDK</span>
         </div>
       </div>
+
       <div class="expertise-block">
         <div class="expertise-block-title">Mobile & Web Analytics <span>Manchester United · HCL</span></div>
-        <div class="expertise-block-text">Implemented end-to-end web and mobile analytics tracking for Manchester United's official digital platforms — covering the website and mobile app. Built the tracking framework using Adobe Analytics (mobile UI) and Mixpanel, delivered dashboards and reports, and contributed product recommendations including engagement features such as emoji reactions on news articles. Resulted in a 25% increase in digital engagement.</div>
+        <div class="expertise-block-text">Implemented end-to-end web and mobile analytics for Manchester United's official digital platforms — the website and the app. Built the full tracking framework using Adobe Analytics and Mixpanel, delivered dashboards and reports, and did something most analysts do not do — recommended product features based on what the data showed. Emoji reactions on news articles came from that analysis. Digital engagement went up 25%.</div>
         <div class="tool-tags">
-          <span class="tool-tag">Adobe Analytics Mobile</span><span class="tool-tag">Mixpanel</span><span class="tool-tag">Mobile App Tracking</span><span class="tool-tag">Engagement Analytics</span>
+          <span class="tool-tag">Adobe Analytics Mobile</span><span class="tool-tag">Mixpanel</span><span class="tool-tag">Mobile App Tracking</span><span class="tool-tag">Product Recommendations</span>
         </div>
       </div>
-      <div class="expertise-block">
-        <div class="expertise-block-title">Digital Advertising Analytics <span>Google DFP · HCL</span></div>
-        <div class="expertise-block-text">Worked with Google DFP (now Google Ad Manager) as part of analytics delivery for a global education publisher — tracking ad serving performance alongside content analytics. Deep understanding of the commercial layer of digital products, not just the measurement layer.</div>
-        <div class="tool-tags">
-          <span class="tool-tag">Google DFP</span><span class="tool-tag">Google Ad Manager</span><span class="tool-tag">Publisher Analytics</span>
-        </div>
-      </div>
+
       <div class="expertise-block">
         <div class="expertise-block-title">GenAI Product Analytics <span>BCG · 2023–Present</span></div>
-        <div class="expertise-block-text">Pioneered KPI frameworks and attribution models for GenAI-powered products — defining what good looks like when the product itself is AI. Built anomaly-driven insight automation increasing GenAI dashboard reliability by 80%. Introduced GenAI-specific metrics across BCG's knowledge platform ecosystem. BCG AI Fluency Ladder L4 — AI Multiplier.</div>
+        <div class="expertise-block-text">Most GenAI products are measured like web apps. They should not be. I built KPI frameworks for internal AI-powered tools that measure output quality — not engagement — and connected survey verbatims to metric anomalies to surface what dashboards cannot see. If loyal users are telling you in a survey that the outputs are missing context, and your retention metrics look fine, you have a problem your dashboard will never find on its own.</div>
         <div class="tool-tags">
-          <span class="tool-tag">GenAI KPIs</span><span class="tool-tag">Anomaly Detection</span><span class="tool-tag">Attribution Modelling</span><span class="tool-tag">Dashboard Automation</span>
+          <span class="tool-tag">Output Quality Metrics</span><span class="tool-tag">Verbatim Analysis</span><span class="tool-tag">Anomaly Detection</span><span class="tool-tag">GenAI KPIs</span><span class="tool-tag">Attribution Modelling</span>
         </div>
       </div>
+
       <div class="expertise-block">
-        <div class="expertise-block-title">Self-Service BI & Data Governance</div>
-        <div class="expertise-block-text">Built scalable low-code analytics portals reducing ad-hoc reporting by 60% and enabling 24/7 dashboard access for 100+ users. Established data governance frameworks, quality checks, and training programmes across 30+ teams. Delivered 100+ executive dashboards with strong data quality controls across product, UX, and marketing functions.</div>
+        <div class="expertise-block-title">Data Governance & Self-Service BI</div>
+        <div class="expertise-block-text">Built the infrastructure that makes analytics reliable enough for other people to use independently. A low-code analytics portal that cut ad-hoc reporting requests by 60%. Self-service dashboards used by 100+ people across functions. Data quality checks baked into every report so the number someone sees in a meeting is a number they can trust. Also delivered digital advertising analytics using Google DFP for a global education publisher — covering both content and commercial metrics from the same instrumentation layer.</div>
         <div class="tool-tags">
-          <span class="tool-tag">SSRS</span><span class="tool-tag">Microsoft PowerApps</span><span class="tool-tag">LCNC BI</span><span class="tool-tag">Webtrends</span><span class="tool-tag">Google Analytics</span><span class="tool-tag">JIRA</span><span class="tool-tag">Confluence</span><span class="tool-tag">Miro</span>
+          <span class="tool-tag">SSRS</span><span class="tool-tag">Microsoft PowerApps</span><span class="tool-tag">LCNC BI</span><span class="tool-tag">Google DFP</span><span class="tool-tag">Webtrends</span><span class="tool-tag">Google Analytics</span><span class="tool-tag">JIRA</span><span class="tool-tag">Confluence</span>
         </div>
       </div>
     </div>
@@ -280,10 +256,10 @@
         <div class="exp-products">Knowledge Platforms · GenAI-Enabled Tools · Intranets · Microsites</div>
         <div class="exp-achievements">
           <div class="exp-achievement">Directed product analytics and capability development across 20+ platforms — improving data reliability by 40%, introducing GenAI-based KPIs and attribution models, and transforming usage data into product roadmaps guiding prioritisation for 15+ agile squads.</div>
-          <div class="exp-achievement">Adobe Analytics SME — optimised contract value through usage evaluation and strategic vendor negotiations across BCG's knowledge and marketing ecosystem.</div>
-          <div class="exp-achievement">Built scalable self-service analytics for 100+ users — created 100+ executive dashboards with strong data quality checks supporting product, UX, and marketing teams.</div>
+          <div class="exp-achievement">Adobe Analytics SME — owned the enterprise contract, led vendor negotiations, and served as the instrumentation authority across BCG's knowledge and marketing ecosystem.</div>
+          <div class="exp-achievement">Built scalable self-service analytics for 100+ users — 100+ executive dashboards with data quality controls that made the numbers trustworthy enough to act on.</div>
           <div class="exp-achievement">Pioneered a low-code analytics portal reducing ad-hoc reporting by 60% and launched anomaly-driven insight automation increasing GenAI dashboard reliability by 80%.</div>
-          <div class="exp-achievement">Trained and supported 30+ teams and cohorts, embedding data as a core part of product planning and enabling insight-driven decision making at scale.</div>
+          <div class="exp-achievement">Trained and supported 30+ teams and cohorts — embedding data as part of how product decisions get made, not just how they get reported.</div>
           <div class="exp-achievement">BCG Deliver Impact Award 2023 — recognised for leading global web product development and enterprise analytics transformation.</div>
         </div>
       </div>
@@ -296,7 +272,7 @@
         <div class="exp-products">Cross-industry client delivery across sports, cybersecurity, and education</div>
         <div class="client-block">
           <div class="client-name">Manchester United — European Football Club</div>
-          <div class="client-text">Implemented web and mobile analytics tracking across official digital platforms using Adobe Analytics (mobile UI) and Mixpanel. Built the full tracking framework, delivered dashboards and reports, and contributed product recommendations — including emoji reactions on news articles — resulting in a 25% increase in digital engagement.</div>
+          <div class="client-text">Implemented web and mobile analytics across official digital platforms using Adobe Analytics and Mixpanel. Built the tracking framework, delivered dashboards, and contributed product recommendations — including emoji reactions on news articles — resulting in a 25% increase in digital engagement.</div>
         </div>
         <div class="client-block">
           <div class="client-name">Global Antivirus Provider — Cybersecurity</div>
@@ -304,7 +280,7 @@
         </div>
         <div class="client-block">
           <div class="client-name">Global Education Publisher</div>
-          <div class="client-text">Delivered KPI strategies and stakeholder dashboards using Webtrends, Adobe Analytics, and Google DFP across global portals. Built analytics and ad serving instrumentation covering content performance and commercial metrics simultaneously.</div>
+          <div class="client-text">Delivered KPI strategies and stakeholder dashboards using Webtrends, Adobe Analytics, and Google DFP across global portals — covering content performance and commercial metrics from the same instrumentation layer.</div>
         </div>
         <div class="exp-achievements" style="margin-top:12px;">
           <div class="exp-achievement">HCL Excellence Awards — 5 awards across 2012–2016 for cross-industry analytics delivery and client impact.</div>
@@ -315,7 +291,9 @@
     <!-- PROJECTS -->
     <div id="tab-projects" class="tab-content">
       <div class="section-eyebrow">Independent Work</div>
-      <h2 class="section-heading">Data stories. <em>Built from scratch.</em></h2>
+      <h2 class="section-heading">Data stories and frameworks. <em>Built from experience.</em></h2>
+
+      <!-- Fifteen Love -->
       <div class="project-card">
         <div class="project-header">
           <div class="project-title">Fifteen Love — 25 Years Served</div>
@@ -327,25 +305,57 @@
           <div class="project-stat"><div class="project-stat-v">25</div><div class="project-stat-l">Years of data</div></div>
           <div class="project-stat"><div class="project-stat-v">47%</div><div class="project-stat-l">Wimbledon upset rate</div></div>
           <div class="project-stat"><div class="project-stat-v">46%</div><div class="project-stat-l">Viewership drop in one year</div></div>
-          <div class="project-stat"><div class="project-stat-v">20</div><div class="project-stat-l">Different champions since 2015</div></div>
+          <div class="project-stat"><div class="project-stat-v">20</div><div class="project-stat-l">Champions since 2015</div></div>
         </div>
-        <a href="https://fifteen-love-story.joshiamit723.workers.dev" target="_blank" class="project-link">View Project ↗</a>
+        <a href="https://fifteen-love-story.joshiamit723.workers.dev" target="_blank" class="project-link">View project ↗</a>
       </div>
+
+      <!-- GenAI Framework -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-title">GenAI Product Analytics Framework</div>
+          <div class="project-badge framework">Framework · 01</div>
+        </div>
+        <div class="project-subtitle">What to measure when the product itself is AI</div>
+        <p class="project-text">Most GenAI products are measured like web apps — sessions, pageviews, time on site. This framework argues for something different. Loyal users who fill in surveys are telling you exactly what your dashboard cannot see. Connect their verbatims to your zero metrics. Measure output quality, not engagement. Instrument before you build, not after something goes wrong.</p>
+        <div class="fw-points">
+          <div class="fw-point">Output Acceptance Rate and Prompt Refinement Rate as primary health metrics — not session count</div>
+          <div class="fw-point">LLM-powered verbatim analysis connected to metric anomalies</div>
+          <div class="fw-point">Pre-launch instrumentation checklist and 90-day quality baseline framework</div>
+        </div>
+        <a href="projects/genai-framework.html" class="project-link">View framework ↗</a>
+      </div>
+
+      <!-- E-commerce Framework — teaser -->
       <div class="project-card coming-soon">
         <div class="project-header">
-          <div class="project-title">Analytics Architecture Frameworks</div>
-          <div class="project-badge soon">Coming Soon</div>
+          <div class="project-title">E-commerce Analytics Framework</div>
+          <div class="project-badge soon">Coming Soon · 02</div>
         </div>
-        <div class="project-subtitle">What should you measure — and how — before you build?</div>
-        <p class="project-text">Three interactive frameworks covering analytics architecture for different product types — e-commerce platforms, GenAI products, and knowledge platforms. Built from 13 years of instrumentation experience across three industries.</p>
+        <div class="project-subtitle">Merchandising, course sales, and conversion instrumentation</div>
+        <p class="project-text">Most e-commerce frameworks treat every visitor as a potential buyer. The reality is that most visitors come to browse, follow, or learn — not to purchase. Built from analytics delivery across a Premier League football club merchandising platform and a global finance education publisher. The central argument: instrument for intent from session start, not from cart add.</p>
+        <div class="teaser-tags">
+          <span class="teaser-tag">Conversion funnel architecture</span>
+          <span class="teaser-tag">Intent-based segmentation</span>
+          <span class="teaser-tag">Cart abandonment signals</span>
+          <span class="teaser-tag">Content-to-commerce attribution</span>
+        </div>
       </div>
+
+      <!-- Knowledge Platform Framework — teaser -->
       <div class="project-card coming-soon">
         <div class="project-header">
-          <div class="project-title">Next Data Story</div>
-          <div class="project-badge soon">Coming Soon</div>
+          <div class="project-title">Knowledge Platform Analytics Framework</div>
+          <div class="project-badge soon">Coming Soon · 03</div>
         </div>
-        <div class="project-subtitle">Stay tuned.</div>
-        <p class="project-text">Another data-driven narrative in progress. Follow on LinkedIn for the announcement.</p>
+        <div class="project-subtitle">Content consumption, search behaviour, and editorial impact</div>
+        <p class="project-text">Knowledge platforms are measured on pageviews when they should be measured on knowledge transfer. Did the user find what they were looking for? Did they read deeply enough to use it? Did they come back for the next step? Built from instrumentation experience across global education portals and professional knowledge ecosystems.</p>
+        <div class="teaser-tags">
+          <span class="teaser-tag">Search-to-find rate</span>
+          <span class="teaser-tag">Content consumption depth</span>
+          <span class="teaser-tag">Editorial impact metrics</span>
+          <span class="teaser-tag">Return visit attribution</span>
+        </div>
       </div>
     </div>
 
@@ -385,12 +395,8 @@
 
 <script>
   function showTab(name, btn) {
-    document.querySelectorAll('.tab-content').forEach(function(el) {
-      el.classList.remove('active');
-    });
-    document.querySelectorAll('.tab-btn').forEach(function(el) {
-      el.classList.remove('active');
-    });
+    document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
     document.getElementById('tab-' + name).classList.add('active');
     btn.classList.add('active');
   }
