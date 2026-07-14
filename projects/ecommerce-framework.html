@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Commerce Analytics Framework — Amit Joshi</title>
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --dark-green: #2C5F2E;
+    --light-green: #e8f0e8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --text-muted: #777;
+    --border: #d4c9b0;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--cream); color: var(--text-primary); font-family: Georgia, serif; font-size: 17px; line-height: 1.75; }
+
+  .site-nav { padding: 18px 40px; border-bottom: 1px solid var(--border); font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; color: var(--text-muted); display: flex; gap: 12px; align-items: center; }
+  .site-nav a { color: var(--dark-green); text-decoration: none; font-weight: 600; }
+
+  .hero { max-width: 780px; margin: 0 auto; padding: 64px 40px 48px; border-bottom: 1px solid var(--border); }
+  .framework-label { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark-green); margin-bottom: 24px; }
+  .hero h1 { font-size: 36px; font-weight: normal; line-height: 1.25; margin-bottom: 20px; }
+  .hero h1 em { color: var(--dark-green); font-style: italic; }
+  .hero-sub { font-size: 16px; color: var(--text-secondary); max-width: 580px; margin-bottom: 12px; }
+  .hero-meta { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: var(--text-muted); margin-top: 28px; }
+
+  .pull-strip { background: var(--dark-green); color: var(--cream); padding: 36px 40px; }
+  .pull-strip-inner { max-width: 780px; margin: 0 auto; }
+  .pull-label { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,240,232,0.5); margin-bottom: 18px; }
+  .pull-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+  .pull-num { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; color: rgba(245,240,232,0.35); margin-bottom: 6px; font-weight: 700; }
+  .pull-text { font-size: 15px; line-height: 1.6; }
+
+  .tabs-bar { border-bottom: 1px solid var(--border); background: var(--cream); position: sticky; top: 0; z-index: 100; }
+  .tabs-inner { max-width: 780px; margin: 0 auto; padding: 0 40px; display: flex; overflow-x: auto; }
+  .tab-btn { padding: 15px 18px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 500; color: var(--text-muted); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s; }
+  .tab-btn:hover { color: var(--dark-green); }
+  .tab-btn.active { color: var(--dark-green); border-bottom-color: var(--dark-green); font-weight: 700; }
+
+  .content-wrap { max-width: 780px; margin: 0 auto; padding: 56px 40px 80px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .section-label { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+  h2 { font-size: 26px; font-weight: normal; line-height: 1.3; margin-bottom: 20px; }
+  h2 em { color: var(--dark-green); font-style: italic; }
+  h3 { font-size: 18px; font-weight: 600; color: var(--text-primary); margin: 36px 0 12px; }
+  p { margin-bottom: 18px; color: var(--text-secondary); }
+  p strong { color: var(--text-primary); }
+  hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  /* Case study callout */
+  .case-box { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--dark-green); padding: 22px 26px; margin: 24px 0 28px; border-radius: 2px; }
+  .case-box-label { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark-green); margin-bottom: 10px; }
+  .case-box p { font-size: 15px; margin-bottom: 10px; color: var(--text-primary); }
+  .case-box p:last-child { margin-bottom: 0; }
+
+  /* KPI cards — simplified */
+  .kpi-card { background: var(--white); border: 1px solid var(--border); padding: 24px 28px; margin-bottom: 16px; border-radius: 2px; }
+  .kpi-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+  .kpi-name { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+  .kpi-tag { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--dark-green); background: var(--light-green); padding: 2px 8px; border-radius: 2px; }
+  .kpi-body { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .kpi-example { background: var(--cream); padding: 11px 15px; font-size: 14px; font-family: 'Helvetica Neue', Arial, sans-serif; color: var(--text-secondary); line-height: 1.6; border-radius: 2px; }
+  .kpi-example strong { color: var(--dark-green); }
+
+  /* Architecture */
+  .arch-layer { margin-bottom: 12px; border-radius: 2px; overflow: hidden; border: 1px solid var(--border); }
+  .arch-header { background: var(--dark-green); color: var(--cream); padding: 13px 22px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 13px; font-weight: 700; }
+  .arch-body { background: var(--white); padding: 16px 22px; }
+  .arch-item { display: flex; gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--light-green); font-size: 15px; color: var(--text-secondary); align-items: baseline; }
+  .arch-item:last-child { border-bottom: none; }
+  .arch-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--dark-green); flex-shrink: 0; margin-top: 9px; }
+
+  /* Mistakes */
+  .mistake { margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+  .mistake:last-child { border-bottom: none; }
+  .mistake-num { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 700; color: var(--dark-green); letter-spacing: 0.08em; margin-bottom: 8px; }
+  .mistake-title { font-size: 19px; font-weight: normal; margin-bottom: 12px; line-height: 1.4; }
+  .mistake-body { font-size: 15px; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.7; }
+  .mistake-fix { background: var(--light-green); border-left: 3px solid var(--dark-green); padding: 12px 18px; font-size: 14px; font-style: italic; color: var(--text-primary); line-height: 1.65; }
+
+  /* Checklist */
+  .cl-phase { margin-bottom: 44px; }
+  .cl-phase-label { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dark-green); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--dark-green); }
+  .cl-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .cl-item:last-child { border-bottom: none; }
+  .cl-box { width: 17px; height: 17px; border: 2px solid var(--dark-green); border-radius: 2px; flex-shrink: 0; margin-top: 4px; }
+  .cl-title { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .cl-desc { font-size: 13px; color: var(--text-muted); font-family: 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; }
+
+  .site-footer { border-top: 1px solid var(--border); padding: 28px 40px; text-align: center; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12px; color: var(--text-muted); line-height: 2.2; }
+  .site-footer strong { color: var(--text-primary); }
+  .site-footer a { color: var(--dark-green); text-decoration: none; }
+  .site-footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .hero, .content-wrap { padding-left: 22px; padding-right: 22px; }
+    .pull-strip { padding: 28px 22px; }
+    .pull-grid { grid-template-columns: 1fr; gap: 20px; }
+    .tabs-inner { padding: 0 14px; }
+    .hero h1 { font-size: 26px; }
+    .site-nav { padding: 14px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="https://amit-joshi-723.github.io/index.html">← Portfolio</a>
+  <span style="color:var(--border)">·</span>
+  <span>Analytics Frameworks</span>
+</nav>
+
+<header class="hero">
+  <div class="framework-label">E-Commerce Analytics Framework</div>
+  <h1>What happens <em>before someone clicks Buy</em> is the whole story.</h1>
+  <p class="hero-sub">Most e-commerce dashboards show you the sale. This framework is about everything that happens before it — and why that is the only part you can actually influence.</p>
+  <p class="hero-sub">Built from real implementation experience: a global sports club's merchandise platform and an education course marketplace.</p>
+  <div class="hero-meta">Amit Joshi · 2026</div>
+</header>
+
+<div class="pull-strip">
+  <div class="pull-strip-inner">
+    <div class="pull-label">Three things most teams get wrong</div>
+    <div class="pull-grid">
+      <div><div class="pull-num">01</div><div class="pull-text">They measure the sale. Not the decision that led to it.</div></div>
+      <div><div class="pull-num">02</div><div class="pull-text">They treat every abandonment as the same problem. It isn't.</div></div>
+      <div><div class="pull-num">03</div><div class="pull-text">They personalise the homepage but not the ad that brought the user back.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs-bar">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('overview',this)">Overview</button>
+    <button class="tab-btn" onclick="showTab('kpis',this)">What to Measure</button>
+    <button class="tab-btn" onclick="showTab('architecture',this)">Architecture</button>
+    <button class="tab-btn" onclick="showTab('wrong',this)">What Goes Wrong</button>
+    <button class="tab-btn" onclick="showTab('checklist',this)">Checklist</button>
+  </div>
+</div>
+
+<div class="content-wrap">
+
+  <!-- OVERVIEW -->
+  <div class="tab-panel active" id="tab-overview">
+    <div class="section-label">The idea</div>
+    <h2>Meet KitShop.com — <em>an e-commerce site like most others.</em></h2>
+
+    <p>KitShop.com sells sports merchandise. Jerseys, caps, training gear. It gets decent traffic. Sales are okay. The team checks revenue every Monday and conversion rate every Friday. When sales drop, everyone guesses why.</p>
+
+    <p>That is the problem this framework solves.</p>
+
+    <div class="case-box">
+      <div class="case-box-label">KitShop.com · The Monday morning situation</div>
+      <p>Revenue is down 18% week-on-week. The dashboard shows conversion rate dropped. Cart abandonment is up. But nobody knows <em>why</em> — because the dashboard only shows what happened, not where things went wrong or when it started.</p>
+      <p>Was it a bad product page? A payment issue? Did a competitor run a sale? Was it a specific category? Nobody can tell. So they guess, run a discount, and wait to see if it helps.</p>
+    </div>
+
+    <p>This is what happens when analytics is set up to report the outcome — not the journey. The fix is not a better dashboard. It is tracking the right things from the beginning.</p>
+
+    <hr>
+
+    <h3>The three moments that matter</h3>
+
+    <p>Every purchase on KitShop.com goes through three moments. Most analytics setups only capture the third one properly.</p>
+
+    <div class="case-box">
+      <div class="case-box-label">The three moments</div>
+      <p><strong>Moment 1 — Interest.</strong> A user lands on a jersey page. They scroll. They zoom the image. They check the size guide. They are thinking about it. Most sites do not track this — but this is where the decision starts.</p>
+      <p><strong>Moment 2 — Hesitation.</strong> They add it to cart. Then they stop. Maybe the shipping cost surprised them. Maybe they are not sure about the size. Maybe they just got distracted. This is not one problem — it is at least three different problems.</p>
+      <p><strong>Moment 3 — The sale.</strong> They buy. This is what every dashboard shows. It is the least useful moment to analyse, because by the time someone buys, all the interesting decisions have already happened.</p>
+    </div>
+
+    <hr>
+
+    <h3>And then there is the logged-in user</h3>
+
+    <p>On the Manchester United platform — one of the top three trafficked sports sites in EMEA — the most valuable thing we built was not a dashboard. It was a pipeline that connected who a user was to what they saw.</p>
+
+    <p>When a fan logged in, we knew their age, their engagement history, which content they had read, which products they had browsed. We connected that to Google's ad server (DFP) so that when the same fan came back, the ad they saw was not random — it was based on what they had already shown interest in.</p>
+
+    <div class="case-box">
+      <div class="case-box-label">KitShop.com · What this looks like in practice</div>
+      <p>A user logs into KitShop.com. They browse the away jersey three times over two weeks but never buy. When they come back the following week, instead of seeing a generic homepage banner, they see an ad for the away jersey — their size, a reminder that only a few are left.</p>
+      <p>That is not magic. That is analytics talking to the ad server. And it only works if the data capture was set up correctly from the start.</p>
+    </div>
+
+    <p>This framework is about building that foundation — for KitShop.com, or any e-commerce site that wants to stop guessing and start knowing.</p>
+  </div>
+
+  <!-- WHAT TO MEASURE -->
+  <div class="tab-panel" id="tab-kpis">
+    <div class="section-label">What to measure</div>
+    <h2>Four metrics. <em>Each one answers a question your revenue number cannot.</em></h2>
+    <p>These are not replacements for conversion rate or revenue. They are the layer underneath — the signals that tell you what is about to happen to those numbers before it actually does.</p>
+
+    <div class="kpi-card">
+      <div class="kpi-header"><span class="kpi-name">Interest Signal Rate</span><span class="kpi-tag">Leading indicator</span></div>
+      <div class="kpi-body">The percentage of sessions where a user shows genuine interest — spending more than 30 seconds on a product page, selecting a size or variant, or adding to a wishlist — without necessarily buying. This tells you whether people are finding what they came for. If this is low, the problem is in discovery. No amount of checkout optimisation will fix it.</div>
+      <div class="kpi-example"><strong>KitShop.com example:</strong> 1,000 users visit this week. Only 120 spend more than 30 seconds on a product page or select a size. Interest Signal Rate = 12%. That is a discovery problem — most visitors are not finding anything that catches them. Fix the product pages and the search before touching the checkout.</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-header"><span class="kpi-name">Abandonment — by stage</span><span class="kpi-tag">Diagnostic</span></div>
+      <div class="kpi-body">Where did users stop? Leaving a product page without adding to cart is a different problem from leaving the checkout screen after entering their card details. Measure all three stages separately: product page exit, cart exit, checkout exit. Never blend them into one "abandonment rate".</div>
+      <div class="kpi-example"><strong>KitShop.com example:</strong> This week, cart abandonment is fine — 55%. But checkout abandonment jumped to 81%. That is not a product problem. Something broke in the payment flow, or a new delivery charge is showing up too late and shocking users. One number told you exactly where to look.</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-header"><span class="kpi-name">Logged-In vs Anonymous Conversion</span><span class="kpi-tag">Personalisation health</span></div>
+      <div class="kpi-body">Logged-in users should convert at a meaningfully higher rate than anonymous ones — because you know more about them and can show them more relevant things. If the gap is small, your personalisation is not working. If there is no gap at all, you are treating both groups identically, which means the login is providing no value to the user or to you.</div>
+      <div class="kpi-example"><strong>KitShop.com example:</strong> Anonymous users convert at 1.8%. Logged-in users convert at 4.2%. That 2.4-point lift is the value of identity — and the proof that the personalisation pipeline is doing its job. If both numbers were 1.9%, something is broken upstream.</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-header"><span class="kpi-name">Ad Quality Score</span><span class="kpi-tag">Personalisation feedback</span></div>
+      <div class="kpi-body">For sites running personalised ads — like the Manchester United platform — click-through rate alone tells you nothing useful. A click that lands and immediately bounces is a bad click. Measure what happens after the click: did the user stay on the page? Did they add to cart? Score each ad variant on this, not just CTR.</div>
+      <div class="kpi-example"><strong>KitShop.com example:</strong> The "away jersey" ad has a 4% CTR — looks great. But 70% of those clicks bounce within 5 seconds. The ad is attracting curiosity, not intent. Compare that to the "training kit" ad: 1.8% CTR but 60% of clickers add to cart. The second ad is doing its job. The first one is just making noise.</div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="tab-panel" id="tab-architecture">
+    <div class="section-label">How it works</div>
+    <h2>Four layers. <em>Each one feeds the next.</em></h2>
+    <p>Think of this as a pipeline. What you capture in layer one determines what you can do in layer four. If the capture is sloppy, everything downstream is guesswork.</p>
+
+    <div class="case-box">
+      <div class="case-box-label">KitShop.com · The full picture</div>
+      <p>A fan visits KitShop.com, logs in, browses the away jersey, and leaves without buying. Three days later they come back — and see an ad for exactly that jersey. They click, add to cart, and purchase. That entire journey was captured, processed, stored, and acted on. Here is how.</p>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-header">01 · Capture — what to record</div>
+      <div class="arch-body">
+        <div class="arch-item"><div class="arch-dot"></div><div>Login event — unique user ID attached to every action that follows in the session</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Product page view — which product, how long, where the user came from</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Size or variant selected — the strongest pre-purchase intent signal</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Add to cart, cart exit, checkout start, checkout exit, purchase — each as a separate event</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Ad impression and click — which variant was shown, whether the user clicked, what happened after</div></div>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-header">02 · Process — what to calculate</div>
+      <div class="arch-body">
+        <div class="arch-item"><div class="arch-dot"></div><div>Is this session logged-in or anonymous? Every other calculation branches from this</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Build a profile for each logged-in user — what they browsed, what they bought, what categories they keep returning to</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Query user metadata (age band, product affinity, last visit) to feed the ad serving pipeline</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Flag which abandonment stage each incomplete session reached</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Score each ad click — did the user stay, did they add to cart, did they buy?</div></div>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-header">03 · The personalisation pipeline — how the ad server connects</div>
+      <div class="arch-body">
+        <div class="arch-item"><div class="arch-dot"></div><div>User logs in → unique ID fires into Adobe Analytics and Mixpanel simultaneously</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>A query runs against the user's Mixpanel profile — pulls age band, gender, browsing history</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>That data is passed to Google DFP (Ad Manager) via a server-side script</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>DFP reads the conditions — male, 25–34, browsed away jersey twice → show away jersey ad</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Ad interaction events are captured back — the loop closes, the conditions improve over time</div></div>
+      </div>
+    </div>
+
+    <div class="arch-layer">
+      <div class="arch-header">04 · Report — who sees what</div>
+      <div class="arch-body">
+        <div class="arch-item"><div class="arch-dot"></div><div>Leadership — revenue, conversion rate, logged-in vs anonymous split</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Product team — Interest Signal Rate trend, abandonment by stage and category</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Marketing / campaigns — Ad Quality Score per variant, which targeting conditions are converting</div></div>
+        <div class="arch-item"><div class="arch-dot"></div><div>Alerts — checkout abandonment spike, Interest Signal Rate drops more than 15% week-on-week</div></div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px; font-size:14px; color:var(--text-muted); font-style:italic;">Tools used on the Manchester United implementation: Adobe Analytics and Mixpanel for capture. JQL queries for user profile extraction. Python script for the metadata bridge to DFP. Google DFP for personalised ad serving. The pipeline is not complicated — but every join has to be clean or the personalisation breaks.</p>
+  </div>
+
+  <!-- WHAT GOES WRONG -->
+  <div class="tab-panel" id="tab-wrong">
+    <div class="section-label">What goes wrong</div>
+    <h2>Four mistakes. <em>All of them avoidable. All of them common.</em></h2>
+
+    <div class="mistake">
+      <div class="mistake-num">01</div>
+      <div class="mistake-title">Blending all abandonment into one number</div>
+      <div class="mistake-body">KitShop.com reports "abandonment rate: 68%." The team runs a discount campaign. It does not work. Why? Because 68% was hiding three completely different problems — users who left the product page because the images were bad, users who left the cart because shipping surprised them, and users who dropped at checkout because the payment step had too many fields. One campaign cannot fix all three. You have to know which stage is broken.</div>
+      <div class="mistake-fix">Split abandonment into three named events from day one. Report each separately. Never let them be averaged into a headline rate.</div>
+    </div>
+
+    <div class="mistake">
+      <div class="mistake-num">02</div>
+      <div class="mistake-title">Treating logged-in users the same as anonymous ones</div>
+      <div class="mistake-body">When a user logs into KitShop.com, you know who they are — their history, their preferences, what they almost bought last time. Most platforms capture the login event and do nothing with it. The user ID gets stored somewhere and never connected to the ad server, the recommendation engine, or the email campaign. The personalisation that could exist never gets built — not because it is hard, but because the data was never structured to support it.</div>
+      <div class="mistake-fix">Design your user ID architecture before you write a single tracking event. Every action after login must carry that ID. This is the foundation of the personalisation pipeline — without it, nothing downstream works.</div>
+    </div>
+
+    <div class="mistake">
+      <div class="mistake-num">03</div>
+      <div class="mistake-title">Measuring ad clicks, not ad quality</div>
+      <div class="mistake-body">The away jersey ad on KitShop.com gets 400 clicks this week. Looks good. But 300 of those users bounced within 4 seconds of landing. The ad was attractive but irrelevant — it brought the wrong people, or it overpromised. Meanwhile, a quieter ad about the training kit is converting at 8% post-click. If you are only looking at CTR, you are optimising for the wrong thing and defunding the ad that is actually working.</div>
+      <div class="mistake-fix">Track what happens after the click — dwell time on the landing page, add-to-cart, purchase. Score each ad variant on this. Pause high-CTR ads that do not convert. Invest in the ones that do.</div>
+    </div>
+
+    <div class="mistake">
+      <div class="mistake-num">04</div>
+      <div class="mistake-title">Only looking at the sale</div>
+      <div class="mistake-body">Revenue dropped on KitShop.com this Monday. The team pulls the report. Nothing in the data explains it. That is because the data only has the sale — not the 10 days of declining interest signals, increasing product page bounces, and a spike in checkout abandonment that preceded it. By the time revenue dropped, the problem was already old. The evidence had already disappeared.</div>
+      <div class="mistake-fix">Add Interest Signal Rate to every weekly review alongside revenue. When ISR declines before revenue does, you have an early warning. When revenue drops and ISR dropped two weeks before it, you have a root cause — and a way to explain it.</div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="tab-panel" id="tab-checklist">
+    <div class="section-label">Before you go live</div>
+    <h2>The setup checklist. <em>Decisions that cannot be made retrospectively.</em></h2>
+    <p>This is not a technical list for developers. These are the decisions a product owner or analytics lead needs to make before implementation starts — because retrofitting them after launch is always harder, always slower, and always incomplete.</p>
+
+    <div class="cl-phase">
+      <div class="cl-phase-label">Before you build anything</div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Decide how your user ID will work</div>
+          <div class="cl-desc">What happens when someone logs in on KitShop.com? Which analytics tools receive the ID? What user attributes will be stored against it? Write this down before development starts. It cannot be added cleanly later.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Name your three abandonment events separately</div>
+          <div class="cl-desc">product_page_exit_no_cart · cart_exit_no_checkout · checkout_exit_no_purchase. Three names, three events, never combined. Put this in the tracking spec before any event is fired.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Map the personalisation pipeline end-to-end</div>
+          <div class="cl-desc">If you are building personalised ads, draw the full flow: analytics capture → user profile → metadata query → ad server conditions → post-click tracking. Every join needs to be specified before the first line of code.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Define what "interest" means for your site</div>
+          <div class="cl-desc">For KitShop.com, interest means 30 seconds on a product page or a size selection. For a course marketplace, it might mean watching 2 minutes of a preview video. Set your threshold before launch so the metric is consistent from day one.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-phase">
+      <div class="cl-phase-label">Launch day</div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Record your week-one baseline</div>
+          <div class="cl-desc">Interest Signal Rate, abandonment by stage, logged-in vs anonymous conversion. Write them down somewhere permanent. These are the numbers everything gets compared against. Without them, you can never answer: is it getting better?</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Validate that user ID is passing correctly</div>
+          <div class="cl-desc">Log in with a test account. Confirm the ID appears in Adobe Analytics and Mixpanel. Run a test query against the user profile. If the ID is missing or inconsistent at launch, the personalisation pipeline is broken before it starts.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Set alerts on checkout abandonment and Interest Signal Rate</div>
+          <div class="cl-desc">A 15% drop in either metric should trigger a notification automatically. Not a weekly report — an immediate alert. Reactive discovery always means the problem has already been running too long.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-phase">
+      <div class="cl-phase-label">30 days in</div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Check the logged-in conversion lift</div>
+          <div class="cl-desc">Are logged-in users converting at least 1.5× the anonymous rate? If not, the personalisation is not working — or it is not reaching the right users. Either way, this is the question that defines what to fix next.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Score your first ad variants</div>
+          <div class="cl-desc">Which DFP targeting conditions are driving quality clicks — dwell time, add-to-cart, purchase? Which are just driving curiosity? Pause the noise. Double down on what is working.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Review abandonment by product category</div>
+          <div class="cl-desc">KitShop.com's overall cart abandonment might look fine. But jerseys might have 80% cart abandonment while training gear has 40%. The category view reveals what the headline hides.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cl-phase">
+      <div class="cl-phase-label">90 days in</div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Compare everything against the launch baseline</div>
+          <div class="cl-desc">Is Interest Signal Rate higher than week one? Is logged-in conversion lift growing? Is checkout abandonment lower? These are the only honest answers to whether the platform is improving — not revenue, which can rise and fall for reasons entirely outside your control.</div>
+        </div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div>
+          <div class="cl-title">Review your repeat buyer rate</div>
+          <div class="cl-desc">What percentage of people who bought in month one came back and bought again within 90 days? If it is below 25–30%, the post-purchase experience — emails, recommendations, product quality — is not closing the relationship. This is the month to find out, not month nine.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div><strong>Amit Joshi</strong> · Data Integration Manager · Analytics Architect · BCG</div>
+  <div>
+    <a href="https://amit-joshi-723.github.io/index.html">Portfolio</a> ·
+    <a href="https://fifteen-love-story.joshiamit723.workers.dev">Fifteen Love</a> ·
+    <a href="https://amit-joshi-723.github.io/projects/genai-framework.html">GenAI Framework</a> ·
+    <a href="https://linkedin.com/in/amit-joshi-045354b2">LinkedIn</a> ·
+    <a href="https://github.com/Amit-Joshi-723">GitHub</a>
+  </div>
+  <div>Built from 13 years of cross-industry instrumentation experience · 2026</div>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: document.querySelector('.tabs-bar').offsetTop - 1, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
