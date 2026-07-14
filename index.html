@@ -75,8 +75,6 @@
   .client-block { background: var(--bg-card-2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 12px 14px; margin-bottom: 10px; }
   .client-name { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; font-family: 'Inter', sans-serif; }
   .client-text { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.65; }
-
-  /* PROJECTS */
   .project-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-bottom: 14px; transition: border-color 0.15s; }
   .project-card:hover { border-color: var(--accent-border); }
   .project-card.coming-soon { opacity: 0.6; border-style: dashed; }
@@ -98,7 +96,6 @@
   .fw-point::before { content: "—"; color: var(--accent); flex-shrink: 0; }
   .teaser-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .teaser-tag { font-size: 11px; padding: 3px 10px; border-radius: 99px; background: var(--bg-card-3); border: 1px solid var(--border); color: var(--text-muted); font-family: 'Inter', sans-serif; }
-
   .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
   .cert-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
   .cert-icon { width: 38px; height: 38px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
@@ -116,7 +113,6 @@
   .contact-card-value a:hover { text-decoration: underline; }
   .download-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); border: none; border-radius: 8px; padding: 12px 24px; font-size: 13px; font-weight: 700; color: #000; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 10px; text-decoration: none; transition: opacity 0.15s; }
   .download-btn:hover { opacity: 0.85; }
-
   .expertise-block-opener { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: #E6EDF3; margin-bottom: 10px; line-height: 1.4; }
   .expertise-stats-row { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid #30363D; border-radius: 6px; overflow: hidden; }
   .expertise-stat { padding: 10px 14px; flex: 1; border-right: 1px solid #30363D; }
@@ -205,7 +201,7 @@
       </div>
     </div>
 
-    <!-- EXPERTISE — stats, opener lines, Lora body text -->
+    <!-- EXPERTISE -->
     <div id="tab-expertise" class="tab-content">
       <div class="section-eyebrow">Areas of Depth</div>
       <h2 class="section-heading">Where I go <em>deep.</em></h2>
@@ -336,10 +332,10 @@
         <div class="project-subtitle">A data study of women's Grand Slam tennis · 2000–2026</div>
         <p class="project-text">Women's tennis got more competitive by every statistical measure since 2015. Viewership dropped 46% in a single year when the names weren't recognisable. Whether those two things cancel each other out depends entirely on what you think tennis is for. Built with live voting, real-time results, and 25 years of verified match data.</p>
         <div class="project-stats">
-          <div class="project-stat"><div class="project-stat-v">25</div><div class="project-stat-l">Years of data</div></div>
-          <div class="project-stat"><div class="project-stat-v">47%</div><div class="project-stat-l">Wimbledon upset rate</div></div>
-          <div class="project-stat"><div class="project-stat-v">46%</div><div class="project-stat-l">Viewership drop in one year</div></div>
-          <div class="project-stat"><div class="project-stat-v">20</div><div class="project-stat-l">Champions since 2015</div></div>
+          <div><div class="project-stat-v">25</div><div class="project-stat-l">Years of data</div></div>
+          <div><div class="project-stat-v">47%</div><div class="project-stat-l">Wimbledon upset rate</div></div>
+          <div><div class="project-stat-v">46%</div><div class="project-stat-l">Viewership drop in one year</div></div>
+          <div><div class="project-stat-v">20</div><div class="project-stat-l">Champions since 2015</div></div>
         </div>
         <a href="https://fifteen-love-story.joshiamit723.workers.dev" target="_blank" class="project-link">View project ↗</a>
       </div>
@@ -348,7 +344,7 @@
       <div class="project-card">
         <div class="project-header">
           <div class="project-title">GenAI Product Analytics Framework</div>
-          <div class="project-badge framework">Framework · 01</div>
+          <div class="project-badge live">● Live</div>
         </div>
         <div class="project-subtitle">What to measure when the product itself is AI</div>
         <p class="project-text">Most GenAI products are measured like web apps — sessions, pageviews, time on site. This framework argues for something different. Loyal users who fill in surveys are telling you exactly what your dashboard cannot see. Connect their verbatims to your zero metrics. Measure output quality, not engagement. Instrument before you build, not after something goes wrong.</p>
@@ -360,27 +356,27 @@
         <a href="projects/genai-framework.html" class="project-link">View framework ↗</a>
       </div>
 
-      <!-- E-commerce Framework — teaser -->
-      <div class="project-card coming-soon">
+      <!-- E-commerce Framework — NOW LIVE -->
+      <div class="project-card">
         <div class="project-header">
-          <div class="project-title">E-commerce Analytics Framework</div>
-          <div class="project-badge soon">Coming Soon · 02</div>
+          <div class="project-title">E-Commerce Analytics Framework</div>
+          <div class="project-badge live">● Live</div>
         </div>
-        <div class="project-subtitle">Merchandising, course sales, and conversion instrumentation</div>
-        <p class="project-text">Most e-commerce frameworks treat every visitor as a potential buyer. The reality is that most visitors come to browse, follow, or learn — not to purchase. Built from analytics delivery across a Premier League football club merchandising platform and a global finance education publisher. The central argument: instrument for intent from session start, not from cart add.</p>
-        <div class="teaser-tags">
-          <span class="teaser-tag">Conversion funnel architecture</span>
-          <span class="teaser-tag">Intent-based segmentation</span>
-          <span class="teaser-tag">Cart abandonment signals</span>
-          <span class="teaser-tag">Content-to-commerce attribution</span>
+        <div class="project-subtitle">What happens before someone clicks Buy is the whole story</div>
+        <p class="project-text">Most e-commerce dashboards show you the sale. This framework is about everything that happens before it — intent signals, abandonment by stage, personalised ad serving, and the logged-in user pipeline. Built from analytics delivery across a Premier League football club's merchandising platform and an education course marketplace.</p>
+        <div class="fw-points">
+          <div class="fw-point">Interest Signal Rate as a leading indicator — before the cart, before the checkout</div>
+          <div class="fw-point">Abandonment broken into three stages — each a different problem, each a different fix</div>
+          <div class="fw-point">Personalisation pipeline: Mixpanel → JQL → DFP → ad served → feedback loop closes</div>
         </div>
+        <a href="projects/ecommerce-framework.html" class="project-link">View framework ↗</a>
       </div>
 
-      <!-- Knowledge Platform Framework — teaser -->
+      <!-- Knowledge Platform Framework — still coming soon -->
       <div class="project-card coming-soon">
         <div class="project-header">
           <div class="project-title">Knowledge Platform Analytics Framework</div>
-          <div class="project-badge soon">Coming Soon · 03</div>
+          <div class="project-badge soon">Coming Soon</div>
         </div>
         <div class="project-subtitle">Content consumption, search behaviour, and editorial impact</div>
         <p class="project-text">Knowledge platforms are measured on pageviews when they should be measured on knowledge transfer. Did the user find what they were looking for? Did they read deeply enough to use it? Did they come back for the next step? Built from instrumentation experience across global education portals and professional knowledge ecosystems.</p>
