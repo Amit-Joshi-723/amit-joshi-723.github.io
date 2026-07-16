@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amit Joshi — Data Integration Manager · Analytics Architect</title>
+<title>Amit Joshi — Digital Product & Analytics Strategist</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -60,7 +60,13 @@
   .expertise-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 14px; }
   .expertise-block-title { font-family: 'Lora', serif; font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .expertise-block-title span { font-size: 10px; font-weight: 600; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; padding: 2px 7px; letter-spacing: 0.5px; font-family: 'Inter', sans-serif; }
-  .expertise-block-text { font-family: Georgia, serif; font-size: 13px; font-style: italic; color: var(--text-secondary); line-height: 1.7; }
+  .expertise-block-opener { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: #E6EDF3; margin-bottom: 10px; line-height: 1.4; }
+  .expertise-stats-row { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid #30363D; border-radius: 6px; overflow: hidden; }
+  .expertise-stat { padding: 10px 14px; flex: 1; border-right: 1px solid #30363D; }
+  .expertise-stat:last-child { border-right: none; }
+  .expertise-stat-v { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: #C9A84C; line-height: 1; }
+  .expertise-stat-l { font-size: 10px; font-weight: 500; color: #484F58; font-family: 'Inter', sans-serif; margin-top: 4px; }
+  .expertise-block-text { font-family: 'Lora', serif; font-size: 13px; color: #8B949E; line-height: 1.75; margin-bottom: 10px; }
   .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .tool-tag { background: var(--bg-card-3); border: 1px solid var(--border); border-radius: 4px; padding: 3px 10px; font-size: 11px; font-weight: 500; color: var(--text-secondary); font-family: 'Inter', sans-serif; }
   .exp-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 22px; margin-bottom: 14px; }
@@ -69,9 +75,10 @@
   .exp-period { font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-bg); border: 1px solid var(--accent-border); border-radius: 3px; padding: 3px 8px; white-space: nowrap; flex-shrink: 0; font-family: 'Inter', sans-serif; }
   .exp-company { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; font-family: 'Inter', sans-serif; }
   .exp-products { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; font-style: italic; font-family: Georgia, serif; }
-  .exp-achievements { display: flex; flex-direction: column; gap: 8px; }
-  .exp-achievement { display: flex; gap: 10px; font-family: Georgia, serif; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .exp-achievements { display: flex; flex-direction: column; gap: 10px; }
+  .exp-achievement { display: flex; gap: 10px; font-family: Georgia, serif; font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
   .exp-achievement::before { content: "—"; color: var(--accent); flex-shrink: 0; }
+  .exp-achievement strong { color: var(--text-primary); font-style: normal; }
   .client-block { background: var(--bg-card-2); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 12px 14px; margin-bottom: 10px; }
   .client-name { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 4px; font-family: 'Inter', sans-serif; }
   .client-text { font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.65; }
@@ -94,6 +101,8 @@
   .fw-points { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
   .fw-point { display: flex; gap: 8px; font-family: Georgia, serif; font-size: 12px; font-style: italic; color: var(--text-secondary); line-height: 1.6; }
   .fw-point::before { content: "—"; color: var(--accent); flex-shrink: 0; }
+  .stack-line { font-size: 11px; font-family: 'Inter', sans-serif; color: var(--text-muted); margin-top: 10px; }
+  .stack-line strong { color: var(--text-secondary); }
   .teaser-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
   .teaser-tag { font-size: 11px; padding: 3px 10px; border-radius: 99px; background: var(--bg-card-3); border: 1px solid var(--border); color: var(--text-muted); font-family: 'Inter', sans-serif; }
   .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
@@ -113,13 +122,6 @@
   .contact-card-value a:hover { text-decoration: underline; }
   .download-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); border: none; border-radius: 8px; padding: 12px 24px; font-size: 13px; font-weight: 700; color: #000; cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 10px; text-decoration: none; transition: opacity 0.15s; }
   .download-btn:hover { opacity: 0.85; }
-  .expertise-block-opener { font-family: 'Lora', serif; font-size: 14px; font-weight: 700; color: #E6EDF3; margin-bottom: 10px; line-height: 1.4; }
-  .expertise-stats-row { display: flex; gap: 0; margin-bottom: 12px; border: 1px solid #30363D; border-radius: 6px; overflow: hidden; }
-  .expertise-stat { padding: 10px 14px; flex: 1; border-right: 1px solid #30363D; }
-  .expertise-stat:last-child { border-right: none; }
-  .expertise-stat-v { font-family: 'Lora', serif; font-size: 22px; font-weight: 700; color: #C9A84C; line-height: 1; }
-  .expertise-stat-l { font-size: 10px; font-weight: 500; color: #484F58; font-family: 'Inter', sans-serif; margin-top: 4px; }
-  .expertise-block-text { font-family: 'Lora', serif; font-size: 13px; color: #8B949E; line-height: 1.75; margin-bottom: 10px; }
   @media (max-width: 768px) {
     .layout { grid-template-columns: 1fr; }
     .sidebar { position: static; height: auto; }
@@ -136,7 +138,7 @@
         <img src="https://avatars.githubusercontent.com/Amit-Joshi-723" alt="Amit Joshi" onerror="this.parentElement.innerHTML='👤'">
       </div>
       <div class="sidebar-name">Amit Joshi</div>
-      <div class="sidebar-role">Data Integration Manager · Analytics Architect · BCG</div>
+      <div class="sidebar-role">Digital Product & Analytics Strategist · BCG</div>
     </div>
     <hr class="sidebar-divider">
     <div class="contact-list">
@@ -167,31 +169,32 @@
     <!-- ABOUT -->
     <div id="tab-about" class="tab-content active">
       <div class="section-eyebrow">About Me</div>
-      <h1 class="section-heading">Product Owner. <em>Analytics Architect. Data Storyteller.</em></h1>
-      <p class="intro-text">Product Owner with ~13 years of experience leading digital analytics, data product strategy, and cross-functional delivery across knowledge platforms, e-commerce, intranets, and GenAI-powered products. I am the person teams come to before they build — advising on what to measure, how to instrument it, and what the data architecture should look like from day one.</p>
-      <p class="intro-text">At BCG I own analytics and product capability across 20+ global platforms — spanning product roadmapping, data governance, vendor negotiations, campaign analytics, and team upskilling across 30+ cohorts. Earlier at HCL I delivered analytics ecosystems across three industries — sports, cybersecurity, and education — building tracking frameworks, automated QA pipelines, and stakeholder dashboards for global clients.</p>
-      <p class="intro-highlight">From instrumentation design to governance frameworks to executive reporting — I own the full analytics lifecycle, not just the output.</p>
-      <div class="doing-heading">What I'm Doing</div>
+      <h1 class="section-heading">I work with product teams to figure out <em>whether what they built is actually working.</em></h1>
+      <p class="intro-text">I work with product teams to figure out whether what they built is actually working. That means setting up the right tracking before they launch, building the dashboards they use to make decisions, and sitting in the room when they decide what to build next. There is usually a gap between what a product team thinks is happening and what the data actually shows — my job is to close that gap, and be honest when the numbers say something nobody wants to hear. I have been doing this for 13 years across knowledge platforms, GenAI tools, e-commerce, and a few industries you would not expect analytics to show up in.</p>
+      <p class="intro-text">At BCG I built the analytics function from scratch — just me and five products at the start, a team of analysts and twenty products by the time it found its shape. The job evolved from pulling reports to being the person teams come to before they build anything. I own the full cycle on the analytics side — defining what to measure, designing the data flows, prototyping the dashboards, shipping them, and training the people who use them. BCG Deliver Impact Award 2023. BCG AI Fluency Ladder L4 — AI Multiplier. MBA in Marketing and Leadership Strategy commencing October 2026.</p>
+      <p class="intro-text">Before BCG I delivered analytics across sports, cybersecurity, and education at HCL — including sole analytics lead for one of the largest football club sites in EMEA. Working across that many industries early on taught me something useful — the measurement framework matters more than the tool. I have carried that into every project since.</p>
+      <p class="intro-highlight">I do not just build the dashboard. I make sure it is measuring the right thing, that people trust the numbers, and that the data actually changes what gets built next.</p>
+      <div class="doing-heading">What I'm Working On</div>
       <div class="doing-grid">
         <div class="doing-card">
           <div class="doing-card-icon">🏗️</div>
-          <div class="doing-card-title">Analytics Architecture & Advisory</div>
-          <div class="doing-card-text">Teams come to me before they build — to define what to measure, how to instrument it, and what the data layer should look like before a line of code is written. The advisory is the value. The tools are just how it gets done.</div>
-        </div>
-        <div class="doing-card">
-          <div class="doing-card-icon">🗺️</div>
-          <div class="doing-card-title">Product Strategy & Delivery</div>
-          <div class="doing-card-text">End-to-end product ownership across 20+ platforms and 15+ agile squads. I translate usage data into roadmap decisions — not just reports. OKR definition, sprint planning, stakeholder alignment, release prioritisation.</div>
+          <div class="doing-card-title">Product Ownership & Analytics Architecture</div>
+          <div class="doing-card-text">The person teams consult before they build — defining what to measure, how to instrument it, and what the data layer should look like from day one. User stories, wireframes, prototypes, delivery, release. The full cycle.</div>
         </div>
         <div class="doing-card">
           <div class="doing-card-icon">🔬</div>
-          <div class="doing-card-title">Data Governance & Platform Ownership</div>
-          <div class="doing-card-text">I own platforms, not just dashboards. Contract management, vendor negotiation, self-service enablement, data quality at scale — the infrastructure that makes analytics reliable enough to build decisions on.</div>
+          <div class="doing-card-title">GenAI Product Measurement</div>
+          <div class="doing-card-text">Designing measurement frameworks for AI-powered products when no playbook exists. Query quality scoring, output acceptance tracking, verbatim-to-metric analysis. Currently building MCP usage measurement architecture.</div>
+        </div>
+        <div class="doing-card">
+          <div class="doing-card-icon">🗺️</div>
+          <div class="doing-card-title">Persona-Driven Analytics</div>
+          <div class="doing-card-text">Triangulating behavioural data with HR and role metadata to profile users by cohort, map journeys, and inform product decisions. Analytics that tells you who your users are — not just what they clicked.</div>
         </div>
         <div class="doing-card">
           <div class="doing-card-icon">✍️</div>
-          <div class="doing-card-title">GenAI Products & Data Storytelling</div>
-          <div class="doing-card-text">Defining what good looks like when the product itself is AI — output quality metrics, verbatim analysis, anomaly detection. Also building independent data journalism — turning complex datasets into narratives worth reading.</div>
+          <div class="doing-card-title">Independent Data Storytelling</div>
+          <div class="doing-card-text">Building data journalism and analytics frameworks independently — turning complex datasets into narratives worth reading, and measurement thinking into publishable frameworks anyone can use.</div>
         </div>
       </div>
       <div class="network-heading">Professional Network</div>
@@ -207,42 +210,29 @@
       <h2 class="section-heading">Where I go <em>deep.</em></h2>
 
       <div class="expertise-block">
-        <div class="expertise-block-title">Product Strategy & Analytics Advisory <span>Pre-build · BCG</span></div>
+        <div class="expertise-block-title">Product Strategy & Full Ownership Cycle <span>Pre-build · BCG</span></div>
         <div class="expertise-block-opener">The work that matters most happens before anything is built.</div>
         <div class="expertise-stats-row">
           <div class="expertise-stat"><div class="expertise-stat-v">15+</div><div class="expertise-stat-l">Agile squads advised</div></div>
           <div class="expertise-stat"><div class="expertise-stat-v">20+</div><div class="expertise-stat-l">Platforms owned</div></div>
           <div class="expertise-stat"><div class="expertise-stat-v">30+</div><div class="expertise-stat-l">Teams upskilled</div></div>
         </div>
-        <div class="expertise-block-text">I advise product teams on what to measure, how to structure their data layer, and what their KPIs should actually be — not what is easy to track, but what answers the questions the business cares about. At BCG this means working with agile squads across knowledge platforms, GenAI tools, and intranet ecosystems — helping product owners translate usage data into roadmap decisions rather than just reporting what happened.</div>
+        <div class="expertise-block-text">End-to-end ownership of analytics and reporting solutions — writing user stories for measurement and dashboard products, designing data flows and wireframes in Figma, prototyping in Mockup.ai, managing delivery through JIRA and Miro, defining acceptance criteria, and releasing reporting products to stakeholders. Serves as acting Product Owner for the analytics squad when the designated PO is unavailable. Provides data-led input to product roadmap decisions — feature-level analysis that saved 2-3 sprints of engineering work by identifying which components users actually used.</div>
         <div class="tool-tags">
-          <span class="tool-tag">OKR Definition</span><span class="tool-tag">KPI Framework Design</span><span class="tool-tag">Roadmapping</span><span class="tool-tag">Stakeholder Alignment</span><span class="tool-tag">Scrum</span><span class="tool-tag">Kanban</span>
+          <span class="tool-tag">Figma</span><span class="tool-tag">Mockup.ai</span><span class="tool-tag">JIRA</span><span class="tool-tag">Confluence</span><span class="tool-tag">Miro</span><span class="tool-tag">OKR Definition</span><span class="tool-tag">Scrum</span><span class="tool-tag">Kanban</span>
         </div>
       </div>
 
       <div class="expertise-block">
-        <div class="expertise-block-title">Adobe Analytics <span>SME · BCG</span></div>
-        <div class="expertise-block-opener">Teams consult me before they instrument — not after something breaks.</div>
+        <div class="expertise-block-title">Persona-Driven Analytics & Customer Journey <span>BCG · HCL</span></div>
+        <div class="expertise-block-opener">Analytics that tells you who your users are — not just what they clicked.</div>
         <div class="expertise-stats-row">
-          <div class="expertise-stat"><div class="expertise-stat-v">100+</div><div class="expertise-stat-l">Dashboards delivered</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">100+</div><div class="expertise-stat-l">Products instrumented</div></div>
           <div class="expertise-stat"><div class="expertise-stat-v">40%</div><div class="expertise-stat-l">Data reliability uplift</div></div>
         </div>
-        <div class="expertise-block-text">Enterprise-level Adobe Analytics ownership at BCG — not just implementation but strategic platform management. Contract negotiation, usage optimisation, vendor relationship, and instrumentation guidance across the knowledge and marketing ecosystem. Teams consult me before they instrument — on processing rules, report suite architecture, and what events actually need to fire. Also delivered Adobe Analytics implementations across a global education publisher and a European football club.</div>
+        <div class="expertise-block-text">Built persona-driven analytics frameworks — triangulating behavioural data with HR and role metadata to profile users by cohort and map journeys. Also built privacy-compliant user tracking across all knowledge products at enterprise scale — encrypting user IDs, mapping to HR metadata via SAINT classification and automated cron jobs, without storing personally identifiable information. The foundation for all cohort-level analysis.</div>
         <div class="tool-tags">
-          <span class="tool-tag">Adobe Analytics</span><span class="tool-tag">Processing Rules</span><span class="tool-tag">Report Suites</span><span class="tool-tag">Workspace</span><span class="tool-tag">Data Feeds</span><span class="tool-tag">Mobile SDK</span>
-        </div>
-      </div>
-
-      <div class="expertise-block">
-        <div class="expertise-block-title">Mobile & Web Analytics <span>Manchester United · HCL</span></div>
-        <div class="expertise-block-opener">Analytics that led to product decisions — not just reports.</div>
-        <div class="expertise-stats-row">
-          <div class="expertise-stat"><div class="expertise-stat-v">25%</div><div class="expertise-stat-l">Digital engagement uplift</div></div>
-          <div class="expertise-stat"><div class="expertise-stat-v">2</div><div class="expertise-stat-l">Analytics stacks implemented</div></div>
-        </div>
-        <div class="expertise-block-text">Implemented end-to-end web and mobile analytics for Manchester United's official digital platforms — the website and the app. Built the full tracking framework using Adobe Analytics and Mixpanel, delivered dashboards and reports, and recommended product features based on what the data showed. Emoji reactions on news articles came from that analysis.</div>
-        <div class="tool-tags">
-          <span class="tool-tag">Adobe Analytics Mobile</span><span class="tool-tag">Mixpanel</span><span class="tool-tag">Mobile App Tracking</span><span class="tool-tag">Product Recommendations</span>
+          <span class="tool-tag">Adobe Analytics</span><span class="tool-tag">Snowflake</span><span class="tool-tag">SAINT Classification</span><span class="tool-tag">Cohort Analysis</span><span class="tool-tag">Customer Journey Analytics</span>
         </div>
       </div>
 
@@ -250,25 +240,38 @@
         <div class="expertise-block-title">GenAI Product Analytics <span>BCG · 2023–Present</span></div>
         <div class="expertise-block-opener">Most GenAI products are measured like web apps. They should not be.</div>
         <div class="expertise-stats-row">
+          <div class="expertise-stat"><div class="expertise-stat-v">3→9</div><div class="expertise-stat-l">Queries per session uplift</div></div>
           <div class="expertise-stat"><div class="expertise-stat-v">80%</div><div class="expertise-stat-l">Dashboard reliability uplift</div></div>
-          <div class="expertise-stat"><div class="expertise-stat-v">L4</div><div class="expertise-stat-l">BCG AI Multiplier</div></div>
         </div>
-        <div class="expertise-block-text">Built KPI frameworks for internal AI-powered tools that measure output quality — not engagement. Connected survey verbatims to metric anomalies to surface what dashboards cannot see. If loyal users are telling you in a survey that the outputs are missing context and your retention metrics look fine, you have a problem your dashboard will never find on its own.</div>
+        <div class="expertise-block-text">Designed measurement architecture for GenAI tools when no playbook existed — dual Adobe Analytics and Datadog setup linked by unique session ID. Proposed query quality scoring framework across five dimensions — improving average queries per session from 3-4 to 8-9. Built interactive dashboards using React and Snowflake via AI-assisted development. Currently defining MCP usage measurement architecture across product teams.</div>
         <div class="tool-tags">
-          <span class="tool-tag">Output Quality Metrics</span><span class="tool-tag">Verbatim Analysis</span><span class="tool-tag">Anomaly Detection</span><span class="tool-tag">GenAI KPIs</span><span class="tool-tag">Attribution Modelling</span>
+          <span class="tool-tag">Output Quality Metrics</span><span class="tool-tag">Datadog</span><span class="tool-tag">Verbatim Analysis</span><span class="tool-tag">Anomaly Detection</span><span class="tool-tag">React</span><span class="tool-tag">Snowflake</span>
+        </div>
+      </div>
+
+      <div class="expertise-block">
+        <div class="expertise-block-title">Mobile & Web Analytics <span>EMEA Football Club · HCL</span></div>
+        <div class="expertise-block-opener">Analytics that led to product decisions — not just reports.</div>
+        <div class="expertise-stats-row">
+          <div class="expertise-stat"><div class="expertise-stat-v">25%</div><div class="expertise-stat-l">Digital engagement uplift</div></div>
+          <div class="expertise-stat"><div class="expertise-stat-v">EMEA</div><div class="expertise-stat-l">Top 3 football site by traffic</div></div>
+        </div>
+        <div class="expertise-block-text">Sole analytics architect for one of EMEA's largest football club website revamps. Designed web and mobile measurement using Adobe Analytics and Mixpanel. Built a cross-platform personalisation pipeline — unique user IDs captured across both tools, user metadata fetched and passed to Google DFP for conditional ad targeting. Recommended product features based on data that drove the 25% engagement uplift.</div>
+        <div class="tool-tags">
+          <span class="tool-tag">Adobe Analytics Mobile</span><span class="tool-tag">Mixpanel</span><span class="tool-tag">Google DFP</span><span class="tool-tag">Personalisation Pipeline</span><span class="tool-tag">Product Recommendations</span>
         </div>
       </div>
 
       <div class="expertise-block">
         <div class="expertise-block-title">Data Governance & Self-Service BI <span>BCG · HCL</span></div>
-        <div class="expertise-block-opener">The infrastructure that makes analytics reliable enough to act on.</div>
+        <div class="expertise-block-opener">Analytics reliable enough to act on — not just reference.</div>
         <div class="expertise-stats-row">
           <div class="expertise-stat"><div class="expertise-stat-v">60%</div><div class="expertise-stat-l">Ad-hoc reporting reduced</div></div>
           <div class="expertise-stat"><div class="expertise-stat-v">100+</div><div class="expertise-stat-l">Self-service users enabled</div></div>
         </div>
-        <div class="expertise-block-text">Built a low-code analytics portal that cut ad-hoc reporting requests by 60%. Self-service dashboards trusted by 100+ people across functions. Data quality checks baked into every report so the number someone sees in a meeting is a number they can act on. Also delivered digital advertising analytics using Google DFP for a global education publisher — covering both content and commercial metrics from the same instrumentation layer.</div>
+        <div class="expertise-block-text">Treated analytics outputs as data products — 100+ executive dashboards with defined SLAs, data quality controls, and clear ownership. Reduced ad-hoc requests from 60-80 to 20-30 per week by repositioning the analytics function as a consulting partner rather than a report provider. Documented KPI frameworks and governance runbooks in Confluence. Built an analytics community across 30+ teams since 2017 — stakeholders own their dashboards, analysts focus on discovery.</div>
         <div class="tool-tags">
-          <span class="tool-tag">SSRS</span><span class="tool-tag">Microsoft PowerApps</span><span class="tool-tag">LCNC BI</span><span class="tool-tag">Google DFP</span><span class="tool-tag">Webtrends</span><span class="tool-tag">Google Analytics</span><span class="tool-tag">JIRA</span><span class="tool-tag">Confluence</span>
+          <span class="tool-tag">SSRS</span><span class="tool-tag">Microsoft PowerApps</span><span class="tool-tag">Google Analytics</span><span class="tool-tag">SQL</span><span class="tool-tag">Data Governance</span><span class="tool-tag">Confluence</span>
         </div>
       </div>
     </div>
@@ -277,43 +280,43 @@
     <div id="tab-experience" class="tab-content">
       <div class="section-eyebrow">Career</div>
       <h2 class="section-heading">13 years. <em>Two organisations. Three industries.</em></h2>
+
       <div class="exp-block">
         <div class="exp-header">
           <div class="exp-title">Data Integration Manager · Product Owner</div>
           <div class="exp-period">Jul 2017 — Present</div>
         </div>
         <div class="exp-company">Boston Consulting Group · Gurugram, India</div>
-        <div class="exp-products">Knowledge Platforms · GenAI-Enabled Tools · Intranets · Microsites</div>
+        <div class="exp-products">Knowledge Platforms · GenAI-Enabled Tools · Intranets · Microsites · E-commerce</div>
         <div class="exp-achievements">
-          <div class="exp-achievement">Directed product analytics and capability development across 20+ platforms — improving data reliability by 40%, introducing GenAI-based KPIs and attribution models, and transforming usage data into product roadmaps guiding prioritisation for 15+ agile squads.</div>
-          <div class="exp-achievement">Adobe Analytics SME — owned the enterprise contract, led vendor negotiations, and served as the instrumentation authority across BCG's knowledge and marketing ecosystem.</div>
-          <div class="exp-achievement">Built scalable self-service analytics for 100+ users — 100+ executive dashboards with data quality controls that made the numbers trustworthy enough to act on.</div>
-          <div class="exp-achievement">Pioneered a low-code analytics portal reducing ad-hoc reporting by 60% and launched anomaly-driven insight automation increasing GenAI dashboard reliability by 80%.</div>
-          <div class="exp-achievement">Trained and supported 30+ teams and cohorts — embedding data as part of how product decisions get made, not just how they get reported.</div>
-          <div class="exp-achievement">BCG Deliver Impact Award 2023 — recognised for leading global web product development and enterprise analytics transformation.</div>
+          <div class="exp-achievement"><strong>Built the analytics function from scratch</strong> — started as the sole analyst across 5 products with no team, framework, or process. Scaled to leading 4-5 analysts managing 20+ products globally. Repositioned the function from report provider to data consulting partner — teams stopped asking for data and started coming for strategy.</div>
+          <div class="exp-achievement"><strong>Delivered full product owner cycle</strong> — writing user stories, designing user flows and wireframes in Figma, prototyping solutions in Mockup.ai, managing delivery through JIRA and Miro, defining acceptance criteria, and releasing to global stakeholders. Serves as acting Product Owner when the designated PO is unavailable.</div>
+          <div class="exp-achievement"><strong>Designed privacy-compliant user tracking</strong> across all knowledge products — encrypted staff IDs, mapped to HR metadata via SAINT classification and automated cron jobs, without storing PII. Enabled cohort-level analysis at enterprise scale across 100+ products.</div>
+          <div class="exp-achievement"><strong>Built persona-driven analytics frameworks</strong> — triangulating behavioural data with HR and role metadata to profile content consumers by cohort and map user journeys. Feature-level analysis saved 2-3 sprints of engineering work per cycle.</div>
+          <div class="exp-achievement"><strong>Led content strategy analysis across multiple global Practice Areas</strong> — evaluating content consumption, audience composition, and usage patterns. Influenced investment decisions without direct authority, working with content managers and business directors at Director and Senior Director level.</div>
+          <div class="exp-achievement"><strong>Designed GenAI measurement architecture</strong> when no playbook existed — dual Adobe Analytics and Datadog setup linked by unique session ID. Query quality scoring framework improved average queries per session from 3-4 to 8-9. Built React and Snowflake dashboards via AI-assisted development.</div>
+          <div class="exp-achievement"><strong>Enabled self-service analytics as a data product</strong> — 100+ executive dashboards with SLAs and data quality controls. Reduced ad-hoc requests from 60-80 to 20-30 per week. BCG Deliver Impact Award 2023.</div>
         </div>
       </div>
+
       <div class="exp-block">
         <div class="exp-header">
           <div class="exp-title">Senior Web Analyst · Automation Engineer</div>
           <div class="exp-period">Oct 2011 — Jun 2017</div>
         </div>
-        <div class="exp-company">HCL Technologies · Noida, India</div>
-        <div class="exp-products">Cross-industry client delivery across sports, cybersecurity, and education</div>
+        <div class="exp-company">HCL Technologies · Noida, India · HCL Excellence Awards — 5 awards across 2012–2016</div>
+        <div class="exp-products">Cross-industry client delivery: sports, cybersecurity, education</div>
         <div class="client-block">
-          <div class="client-name">Manchester United — European Football Club</div>
-          <div class="client-text">Implemented web and mobile analytics across official digital platforms using Adobe Analytics and Mixpanel. Built the tracking framework, delivered dashboards, and contributed product recommendations — including emoji reactions on news articles — resulting in a 25% increase in digital engagement.</div>
+          <div class="client-name">European Football Club — EMEA</div>
+          <div class="client-text">Sole analytics architect for the website revamp of one of EMEA's largest football club sites by traffic. Designed web and mobile measurement using Adobe Analytics and Mixpanel. Built a cross-platform personalisation pipeline integrating Google DFP for conditional ad targeting based on user metadata. Recommended product features from behavioural data — resulting in a 25% increase in digital engagement.</div>
         </div>
         <div class="client-block">
-          <div class="client-name">Global Antivirus Provider — Cybersecurity</div>
-          <div class="client-text">Engineered automated regression frameworks improving QA coverage by 60% and accelerating deployment timelines across release cycles.</div>
+          <div class="client-name">Symantec Endpoint Protection</div>
+          <div class="client-text">Led QA automation delivery managing a team of 3. Delivered 300 automation cases in 3 months using PowerShell, scaled to a 5000-case programme over 12 months — improving QA coverage by 60% and accelerating deployment timelines.</div>
         </div>
         <div class="client-block">
-          <div class="client-name">Global Education Publisher</div>
-          <div class="client-text">Delivered KPI strategies and stakeholder dashboards using Webtrends, Adobe Analytics, and Google DFP across global portals — covering content performance and commercial metrics from the same instrumentation layer.</div>
-        </div>
-        <div class="exp-achievements" style="margin-top:12px;">
-          <div class="exp-achievement">HCL Excellence Awards — 5 awards across 2012–2016 for cross-industry analytics delivery and client impact.</div>
+          <div class="client-name">Pearson Education</div>
+          <div class="client-text">Supported product analytics across 30 education products using Adobe Analytics and Webtrends. Built dashboards, advised on JavaScript implementation, and contributed to KPI definition across global education portals.</div>
         </div>
       </div>
     </div>
@@ -323,7 +326,6 @@
       <div class="section-eyebrow">Independent Work</div>
       <h2 class="section-heading">Data stories and frameworks. <em>Built from experience.</em></h2>
 
-      <!-- Fifteen Love -->
       <div class="project-card">
         <div class="project-header">
           <div class="project-title">Fifteen Love — 25 Years Served</div>
@@ -337,49 +339,50 @@
           <div><div class="project-stat-v">46%</div><div class="project-stat-l">Viewership drop in one year</div></div>
           <div><div class="project-stat-v">20</div><div class="project-stat-l">Champions since 2015</div></div>
         </div>
+        <div class="stack-line"><strong>Stack:</strong> React · TanStack Start · Supabase (live voting) · Tailwind CSS · Cloudflare Workers · Lovable · GitHub</div>
+        <br>
         <a href="https://fifteen-love-story.joshiamit723.workers.dev" target="_blank" class="project-link">View project ↗</a>
       </div>
 
-      <!-- GenAI Framework -->
       <div class="project-card">
         <div class="project-header">
           <div class="project-title">GenAI Product Analytics Framework</div>
           <div class="project-badge live">● Live</div>
         </div>
         <div class="project-subtitle">What to measure when the product itself is AI</div>
-        <p class="project-text">Most GenAI products are measured like web apps — sessions, pageviews, time on site. This framework argues for something different. Loyal users who fill in surveys are telling you exactly what your dashboard cannot see. Connect their verbatims to your zero metrics. Measure output quality, not engagement. Instrument before you build, not after something goes wrong.</p>
+        <p class="project-text">Most GenAI products are measured like web apps. This framework argues that the metric that matters is not whether users stayed — it is whether the output they received was good enough to use.</p>
         <div class="fw-points">
-          <div class="fw-point">Output Acceptance Rate and Prompt Refinement Rate as primary health metrics — not session count</div>
-          <div class="fw-point">LLM-powered verbatim analysis connected to metric anomalies</div>
-          <div class="fw-point">Pre-launch instrumentation checklist and 90-day quality baseline framework</div>
+          <div class="fw-point">Measure output quality not engagement — a user who re-prompts eight times is not engaged, they are frustrated</div>
+          <div class="fw-point">Connect survey verbatims to metric anomalies — loyal users filling in surveys are telling you what your dashboard cannot see</div>
+          <div class="fw-point">Define quality KPIs before launch — without a pre-launch baseline you cannot measure improvement, only current state</div>
+          <div class="fw-point">Segment by user intent — power users, explorers, and casual users need completely different success metrics</div>
         </div>
         <a href="projects/genai-framework.html" class="project-link">View framework ↗</a>
       </div>
 
-      <!-- E-commerce Framework — NOW LIVE -->
       <div class="project-card">
         <div class="project-header">
           <div class="project-title">E-Commerce Analytics Framework</div>
           <div class="project-badge live">● Live</div>
         </div>
         <div class="project-subtitle">What happens before someone clicks Buy is the whole story</div>
-        <p class="project-text">Most e-commerce dashboards show you the sale. This framework is about everything that happens before it — intent signals, abandonment by stage, personalised ad serving, and the logged-in user pipeline. Built from analytics delivery across a Premier League football club's merchandising platform and an education course marketplace.</p>
+        <p class="project-text">Most e-commerce dashboards show you the sale. This framework is about everything that happens before it — intent signals, abandonment by stage, and the logged-in user personalisation pipeline. Built from analytics delivery across a Premier League football club's merchandising platform and an education course marketplace.</p>
         <div class="fw-points">
-          <div class="fw-point">Interest Signal Rate as a leading indicator — before the cart, before the checkout</div>
-          <div class="fw-point">Abandonment broken into three stages — each a different problem, each a different fix</div>
+          <div class="fw-point">Interest Signal Rate as a leading indicator — before the cart, before the checkout, before the sale</div>
+          <div class="fw-point">Abandonment split into three stages — each a different problem, each a different fix, never averaged together</div>
           <div class="fw-point">Personalisation pipeline: Mixpanel → JQL → DFP → ad served → feedback loop closes</div>
+          <div class="fw-point">Logged-in vs anonymous conversion gap — the proof that identity-based personalisation is working</div>
         </div>
         <a href="projects/ecommerce-framework.html" class="project-link">View framework ↗</a>
       </div>
 
-      <!-- Knowledge Platform Framework — still coming soon -->
       <div class="project-card coming-soon">
         <div class="project-header">
           <div class="project-title">Knowledge Platform Analytics Framework</div>
           <div class="project-badge soon">Coming Soon</div>
         </div>
         <div class="project-subtitle">Content consumption, search behaviour, and editorial impact</div>
-        <p class="project-text">Knowledge platforms are measured on pageviews when they should be measured on knowledge transfer. Did the user find what they were looking for? Did they read deeply enough to use it? Did they come back for the next step? Built from instrumentation experience across global education portals and professional knowledge ecosystems.</p>
+        <p class="project-text">Knowledge platforms are measured on pageviews when they should be measured on knowledge transfer. Did the user find what they were looking for? Did they read deeply enough to use it? Built from instrumentation experience across global education portals and enterprise knowledge ecosystems.</p>
         <div class="teaser-tags">
           <span class="teaser-tag">Search-to-find rate</span>
           <span class="teaser-tag">Content consumption depth</span>
